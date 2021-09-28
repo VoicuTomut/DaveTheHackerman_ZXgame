@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - PlayerBullet
+  - WallCollider
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
@@ -13,9 +17,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - LineElements
+  - UiElements
+  - Glow
   - 
   - 
   - 
@@ -40,4 +44,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: LineElements
+    uniqueID: 2238405769
+    locked: 0
+  - name: UiElements
+    uniqueID: 1879075995
     locked: 0
