@@ -20,7 +20,7 @@ namespace ZxDungeon.Interactive
         {
             circuitLogic = new CircuitLogic();
             circuit = circuitLogic.GenerateCircuit();
-            circuit = circuit.FuseElements(circuit, 5, 14);
+           // circuit = circuit.FuseElements(circuit, 5, 14);
             GameObject visCircuit = Instantiate(visualCircuitObject, transform);
             GameObject canvas = Instantiate(canvasObject, transform);
             VisualCircuit cv = visCircuit.GetComponent<VisualCircuit>();
@@ -29,22 +29,6 @@ namespace ZxDungeon.Interactive
         }
 
 
-        // generateOncOmmand(Circuit circuit)
-        //{
-        //    circuitLogic = new CircuitLogic();
-        //    circuit = circuitLogic.GenerateCircuit();
-        //    GameObject visCircuit = Instantiate(visualCircuitObject, transform);
-        //    GameObject canvas = Instantiate(canvasObject, transform);
-        //    VisualCircuit cv = visCircuit.GetComponent<VisualCircuit>();
-        //    cv.circuit = circuit;
-        //    cv.canvas = canvas.GetComponent<Canvas>();
-        //}
-        //void ButtonAdd()
-        //{
-        //    //circuit.AddNewElement();
-        //    generateOncOmmand(circuit.AddNewElement());
-                
-        //}
         // Update is called once per frame
         void Update()
         {

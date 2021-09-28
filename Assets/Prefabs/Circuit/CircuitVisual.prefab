@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8928283966340568773}
   - component: {fileID: 8650351376540854730}
+  - component: {fileID: 1628719559194481319}
   m_Layer: 0
   m_Name: CircuitVisual
   m_TagString: Untagged
@@ -43,8 +44,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b65841787072a2d4fb040a3e59b3a660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiElements: []
   canvas: {fileID: 0}
   uiElementProperties: {fileID: 11400000, guid: 91b8ae364a8960e4fb24d079bfdb5149,
     type: 2}
   textProperties: {fileID: 11400000, guid: db4310004d3c3a843a719d5e66cea8f0, type: 2}
+--- !u!114 &1628719559194481319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8928283966340568772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ee6163f0ae1e948a09a2ba1330aea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: Input
+    prefab: {fileID: 9083479502420552919, guid: 1be578a4919a0e34cab3b670c2ef4575,
+      type: 3}
+    size: 5
+  - tag: ZG
+    prefab: {fileID: 2030417998527933239, guid: 09aaafa8501416441b7624add99dfcd5,
+      type: 3}
+    size: 40
+  - tag: ZR
+    prefab: {fileID: 5875986938900980810, guid: ad64ddbaab879dc458bff4ca0f2a9503,
+      type: 3}
+    size: 40
+  - tag: Output
+    prefab: {fileID: 3797473164813656994, guid: 7c86326186802dc4487c461cb5d5c86a,
+      type: 3}
+    size: 5
+  - tag: Square
+    prefab: {fileID: 2030417998527933239, guid: 09aaafa8501416441b7624add99dfcd5,
+      type: 3}
+    size: 10
+  - tag: Line
+    prefab: {fileID: 5094569734892369470, guid: 517ae7c8fc082364ca2f0ae1266b0d66,
+      type: 3}
+    size: 100
+  - tag: UiText
+    prefab: {fileID: 5557571933771987334, guid: 4146d598a5d5cb94ba2678c799a8937b,
+      type: 3}
+    size: 80

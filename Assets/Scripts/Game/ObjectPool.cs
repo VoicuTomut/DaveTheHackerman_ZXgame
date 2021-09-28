@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ObjectPool : MonoBehaviour
 {
     public List<GameObject> poolObjects = new List<GameObject>();
@@ -13,11 +14,6 @@ public class ObjectPool : MonoBehaviour
         InitialisePool();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void InitialisePool()
     {
         poolObjects = new List<GameObject>();

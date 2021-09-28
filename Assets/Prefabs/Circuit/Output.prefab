@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3797473164813656995}
   - component: {fileID: 3843678230555095893}
-  - component: {fileID: 4176521004943106450}
   m_Layer: 0
   m_Name: Output
   m_TagString: Untagged
@@ -49,25 +48,11 @@ MonoBehaviour:
   value: 0
   lineIndex: 0
   uiValue: {fileID: 0}
-  textParent: {fileID: 0}
   connections: []
   type: 0
   initialPosition: {x: 0, y: 0, z: 0}
   textProperties: {fileID: 11400000, guid: db4310004d3c3a843a719d5e66cea8f0, type: 2}
---- !u!64 &4176521004943106450
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3797473164813656994}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  visualCircuit: {fileID: 0}
 --- !u!1 &6933220018909754518
 GameObject:
   m_ObjectHideFlags: 0

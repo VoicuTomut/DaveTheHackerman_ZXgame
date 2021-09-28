@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{354EF393-F1C0-EDB9-BA7C-D0BB38545C9A}</ProjectGuid>
+    <ProjectGuid>{0ECF1EB2-F84A-2085-AEFE-70D0288B0C9E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -59,14 +59,13 @@
     <Compile Include="Assets\Resources\Circuit\Data\TextProperties.cs" />
     <Compile Include="Assets\Resources\Circuit\Data\UiElementProperties.cs" />
     <Compile Include="Assets\Scripts\Circuit\Interactive\CircuitMaster.cs" />
-    <Compile Include="Assets\Scripts\Circuit\Interactive\EventManager.cs" />
     <Compile Include="Assets\Scripts\Circuit\Logic\Circuit.cs" />
     <Compile Include="Assets\Scripts\Circuit\Logic\CircuitLogic.cs" />
     <Compile Include="Assets\Scripts\Circuit\Logic\Element.cs" />
     <Compile Include="Assets\Scripts\Circuit\Logic\ElementType.cs" />
     <Compile Include="Assets\Scripts\Circuit\Logic\Fraction.cs" />
     <Compile Include="Assets\Scripts\Circuit\UI\ActionManager.cs" />
-    <Compile Include="Assets\Scripts\Circuit\UI\CircuitUIText.cs" />
+    <Compile Include="Assets\Scripts\Circuit\UI\AdvancedObjectPool.cs" />
     <Compile Include="Assets\Scripts\Circuit\UI\LineElement.cs" />
     <Compile Include="Assets\Scripts\Circuit\UI\SelectionManager.cs" />
     <Compile Include="Assets\Scripts\Circuit\UI\UiAction.cs" />

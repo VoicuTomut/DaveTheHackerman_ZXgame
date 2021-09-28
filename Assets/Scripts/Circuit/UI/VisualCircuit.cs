@@ -10,31 +10,34 @@ namespace ZxDungeon.UI
 {
     public class VisualCircuit : MonoBehaviour
     {
-        public List<UiElement> uiElements = new List<UiElement>();
-        public Circuit circuit { get; set; }
+        public Circuit circuit;
         public Canvas canvas;
         public UiElementProperties uiElementProperties;
         public TextProperties textProperties;
-        private float border=100;
+        private readonly float border=100;
+        private AdvancedObjectPool pool;
 
 
 
         // Start is called before the first frame update
         void Start()
         {
+            pool = GetComponent<AdvancedObjectPool>();
+            pool.Initialise();
             InitCircuit(circuit);
 
         }
 
 
-        private void InitCircuit(Circuit circuit)
+        public void InitCircuit(Circuit circuit)
         {
+            pool.ResetAll();
             int inputCount = circuit.Elements.Where(x => x.elementType == ElementType.Input).ToList().Count;
-            List<UiElement> e = DrawUiElements(circuit.Elements,canvas);
+            List<UiElement> e = DrawUiElements(circuit.Elements);
             DrawLineElements(circuit,e );
         }
 
-        private List<UiElement> DrawUiElements(List<Element> elements,Canvas canvas)
+        private List<UiElement> DrawUiElements(List<Element> elements)
         {
             List<UiElement> e = new List<UiElement>();
             int[] lineCount = new int[5] { 0, 0, 0, 0, 0 };
@@ -49,26 +52,26 @@ namespace ZxDungeon.UI
                 {
                     case ElementType.Input:
                         {
-                            DrawUiElement(e, uiElementProperties.Input, element, border, Screen.height- (heightStep * element.lineIndex - 1));
+                            DrawUiElement("Input", e, element, border, Screen.height- (heightStep * element.lineIndex - 1));
                             lineCount[element.lineIndex-1]++;
                             spawnedInputs++;
                             break;
                         }
                     case ElementType.ZG:
                         {
-                            DrawUiElement(e, uiElementProperties.ZG,  element, border + widthSteps[element.lineIndex - 1] * lineCount[element.lineIndex - 1], Screen.height - (heightStep * element.lineIndex - 1));
+                            DrawUiElement("ZG", e, element, border + widthSteps[element.lineIndex - 1] * lineCount[element.lineIndex - 1], Screen.height - (heightStep * element.lineIndex - 1));
                             lineCount[element.lineIndex-1]++;
                             break;
                         }
                     case ElementType.ZR:
                         {
-                            DrawUiElement(e, uiElementProperties.ZR, element, border + widthSteps[element.lineIndex - 1] * lineCount[element.lineIndex - 1], Screen.height - (heightStep * element.lineIndex - 1));
+                            DrawUiElement("ZR", e, element, border + widthSteps[element.lineIndex - 1] * lineCount[element.lineIndex - 1], Screen.height - (heightStep * element.lineIndex - 1));
                             lineCount[element.lineIndex - 1]++;
                             break;
                         }
                     case ElementType.Output:
                         {
-                            DrawUiElement(e, uiElementProperties.Output,  element, Screen.width - border, Screen.height - (heightStep * element.lineIndex - 1));
+                            DrawUiElement("Output",e,  element, Screen.width - border, Screen.height - (heightStep * element.lineIndex - 1));
                             spawnedOutputs++;
                             break;
                         }
@@ -77,10 +80,10 @@ namespace ZxDungeon.UI
                 return e;
 
         }
-        private void DrawLineElements(Circuit graph, List<UiElement> uiElements)
+        private void DrawLineElements(Circuit circuit, List<UiElement> uiElements)
         {
-            List<Element> elements = graph.Elements;
-            int[,] matrix = graph.AdjancenceMatrix;
+            List<Element> elements = circuit.Elements;
+            int[,] matrix = circuit.AdjancenceMatrix;
             int a = matrix.GetLength(0);
             int b = matrix.GetLength(1);
             for (int i = 1; i < matrix.GetLength(0); i++)
@@ -91,9 +94,11 @@ namespace ZxDungeon.UI
                     { 
                         if(i>=j)
                         {
-                            GameObject go = Instantiate(uiElementProperties.LineObject,transform);
+                            GameObject go = pool.InstantiateObject("Line", transform);
                             LineElement le = go.GetComponent<LineElement>();
-                            le.connectionOne = uiElements.Single(x => x.id == matrix[i, 0]);
+                            UiElement e = uiElements.Single(x => x.id == matrix[i, 0]);
+                            le.connectionOne = e;
+                            //le.connectionOne = uiElements.Single(x => x.id == matrix[i, 0]);
                             uiElements.Find(x => x.id == le.connectionOne.id).connections.Add(le);
                             le.connectionTwo = uiElements.Single(x => x.id == matrix[0, j]);
                             uiElements.Find(x => x.id == le.connectionTwo.id).connections.Add(le);
@@ -104,19 +109,19 @@ namespace ZxDungeon.UI
                 }
             }
         }
-        private void DrawUiElement(List<UiElement> uiElements, GameObject obj,  Element e, float x, float y)
+        private void DrawUiElement(string tag,List<UiElement> elements, Element e, float x, float y)
         {
             Vector3 spawnPoint = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 10));
-            GameObject go = Instantiate(obj,transform);
+            GameObject go = pool.InstantiateObject(tag,spawnPoint,transform);
             go.transform.localPosition = spawnPoint;
             UiElement ue = go.GetComponent<UiElement>();
             ue.id = e.id;
             ue.initialPosition = spawnPoint;
             ue.type = e.elementType;
             ue.value = e.value;
-            ue.textParent = canvas.transform;
-            uiElements.Add(ue);
-            ue.Init(canvas.transform);
+            ue.visualCircuit = this;
+            elements.Add(ue);
+            ue.Init(pool.InstantiateObject("UiText", canvas.transform));
         }
         private float[] GetWidthSteps(List<Element> elements, float availableWidth)
         {
