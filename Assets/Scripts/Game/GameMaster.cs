@@ -15,9 +15,9 @@ public class GameMaster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetAllInactive();
-        currentActive = mainMenu;
-        currentActive.SetActive(true);
+        //SetAllInactive();
+        //currentActive = mainMenu;
+        //currentActive.SetActive(true);
     }
 
     public void StartGame()
