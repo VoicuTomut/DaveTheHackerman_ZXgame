@@ -37,7 +37,7 @@ public class UiElement : MonoBehaviour
         if (canBeDragged)
         {
             isDragging = true;
-            if (type != ElementType.Input && type != ElementType.Output)
+            if (type == ElementType.ZR || type == ElementType.ZG)
             {
                 collider.enabled = false;
                 Vector3 followPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -57,13 +57,12 @@ public class UiElement : MonoBehaviour
 
     public void Select()
     {
-
-        selectionEffect.SetActive(true);
+        if(selectionEffect != null) selectionEffect.SetActive(true);
     }
 
     public void Deselect()
     {
-        selectionEffect.SetActive(false);
+        if(selectionEffect != null) selectionEffect.SetActive(false);
     }
 
     private void OnMouseUp()
@@ -74,10 +73,11 @@ public class UiElement : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, 100, raycastLayer))
             {
                 UiElement e = hit.collider.GetComponent<UiElement>();
-                e.uiValue.gameObject.SetActive(false);
                 if (e != null)
                 {
-                    Circuit c = visualCircuit.circuit.FuseElements(visualCircuit.circuit, id, e.id);
+                    if(e.uiValue != null) e.uiValue.gameObject.SetActive(false);
+
+                    Circuit c = visualCircuit.circuit.PushElements(visualCircuit.circuit, id, e.id);
                     if (c != null)
                     {
                         visualCircuit.circuit = c;
@@ -85,8 +85,8 @@ public class UiElement : MonoBehaviour
                     }
                 }
             }
-            transform.position = initialPosition;
-            uiValue.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+            //transform.position = initialPosition;
+           if(uiValue!=null) uiValue.transform.position = Camera.main.WorldToScreenPoint(transform.position);
             canBeDragged = false;
         }
         isDragging = false;
@@ -96,8 +96,7 @@ public class UiElement : MonoBehaviour
     }
     private void OnMouseExit()
     {
-
-            uiValue.SetActive(true);
+        if(type == ElementType.ZR || type == ElementType.ZG)uiValue.SetActive(true);
     }
 
 
@@ -118,7 +117,7 @@ public class UiElement : MonoBehaviour
             Text t = go.GetComponent<Text>();
             if (type == ElementType.ZR) t.color = new Color(textProperties.ZR.r, textProperties.ZR.g, textProperties.ZR.b);
             if (type == ElementType.ZG) t.color = new Color(textProperties.ZG.r, textProperties.ZG.g, textProperties.ZG.b);
-            t.text = id.ToString();
+            t.text = value.ToString();
             t.transform.position = Camera.main.WorldToScreenPoint(transform.position);
             uiValue = go;
         }

@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\Game\DeathEffects.cs" />
     <Compile Include="Assets\Scripts\Game\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Game\GameMaster.cs" />
+    <Compile Include="Assets\Scripts\Game\Level.cs" />
     <Compile Include="Assets\Scripts\Game\LevelMaster.cs" />
     <Compile Include="Assets\Scripts\Game\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\Game\PlayerController.cs" />

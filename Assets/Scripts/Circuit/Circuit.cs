@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -96,15 +97,20 @@ public class Circuit
                 }
 
                 if (commonFlag == 0)
-                {
-                    circuit = AddEdge(circuit, id1, neighboure2);
+                {   
+                    if(id1 != neighboure2){
+                        circuit = AddEdge(circuit, id1, neighboure2);
+                       // List<int> bours = GetNeighbours(circuit, id1);
+                    }
+                   
                 }
             }
 
 
 
-
+           // List<int> boursu = GetNeighbours(circuit, id1);
             circuit = RemoveElement(circuit, id2);
+           // List<int> boursf = GetNeighbours(circuit, id1);
 
         }
 
@@ -118,7 +124,67 @@ public class Circuit
     /// </summary>
     public Circuit PushElements(Circuit circuit, int id1, int id2)
     {
-        //Inprogres
+        Element e1 = circuit.Elements.Single(x => x.id == id1);
+        Element e2 = circuit.Elements.Single(x => x.id == id2);
+
+
+        bool piFlag = false;
+        if (e1.value == 1)
+        {
+            piFlag = true;
+        }
+        else
+        {
+            if (e2.value == 1)
+            {
+                piFlag = true;
+                Element sw = e2;
+                e2 = e1;
+                e1 = e2;
+            }
+        }
+
+        bool typeFlag = false;
+        if ((e1.elementType != e2.elementType) && (e1.elementType==ElementType.ZR|| e1.elementType == ElementType.ZG) && (e2.elementType == ElementType.ZR || e2.elementType == ElementType.ZG))
+        {
+            typeFlag = true;
+        }
+
+        if (piFlag && typeFlag)
+        {
+            e2.value = -e2.value;
+
+           var e2Neighbours = GetNeighbours(circuit, e2.id);
+           var e1Neighbours = GetNeighbours(circuit, e1.id);
+
+           foreach(int node in e2Neighbours)
+            {
+                if (node != e1.id)
+                {
+                    Element nodeElement = circuit.Elements.Single(x => x.id == node);
+
+                    int newID= GetNewId(circuit);
+                    Element clonaE1 = new Element(newID, e1.elementType, e1.value, nodeElement.lineIndex);
+
+                    int[] newNeighbours = new int[2] {node, e2.id };
+                    circuit = AddNewElement(circuit,clonaE1, newNeighbours);
+
+                    circuit = RemoveEdge(circuit, e2.id, node);
+                }
+            }
+
+            foreach (int node in e1Neighbours)
+            {
+                if (node != e1.id)
+                {
+                    circuit = AddEdge(circuit, e2.id, node);
+                }
+            }
+
+            circuit = RemoveElement(circuit, e1.id);
+
+
+        }
         return circuit;
 
     }
@@ -159,13 +225,36 @@ public class Circuit
             List<int> elementNeighbours = GetNeighbours(circuit, id);
             foreach (int neighbour in elementNeighbours)
             {
+                Element e = circuit.Elements.Single(x => x.id == neighbour);
+                if (e.elementType!= ElementType.Hadamart)
+                {
+                    // check for an empty id
+                    int idtake = GetNewId(circuit);
 
-                // check for an empty id
-                int idtake = GetNewId(circuit);
+                    Element hsquare = new Element(idtake, ElementType.Hadamart, 0, 0);
+                    int[] hNeighbours = new int[2] { neighbour, id };
+                    circuit = AddNewElement(circuit, hsquare, hNeighbours);
+                    circuit = RemoveEdge(circuit, id, neighbour);
 
-                Element hsquare = new Element(idtake, ElementType.Square, 0, 1);
-                int[,] hNeighbours = new int[neighbour, id];
-                circuit = AddNewElement(circuit, hsquare, hNeighbours);
+
+                }
+                else
+                {
+
+                    List<int> neighbour_neighbours = GetNeighbours(circuit, neighbour);
+                   
+                    foreach (int spider in  neighbour_neighbours)  //crapa daca o sa avem H langa h da atunci crap oricumm mai multe  
+                    {
+                        if (spider != id)
+                        {
+                            circuit = AddEdge(circuit, spider, id);
+                        }
+                        
+                    }
+
+                    circuit = RemoveElement(circuit, neighbour);
+                }
+               
             }
         }
 
@@ -200,7 +289,7 @@ public class Circuit
     /// <summary>
     /// Adds a new element to the circuit graph
     /// </summary>
-    public Circuit AddNewElement(Circuit circuit, Element element, int[,] neighbours)
+    public Circuit AddNewElement(Circuit circuit, Element element, int[] neighbours)
     {
 
         var elements = circuit.Elements;
@@ -222,7 +311,7 @@ public class Circuit
                 int flag = 0;
                 for (int k = 0; k < neighbours.Length; k++)
                 {
-                    if (circuit.AdjancenceMatrix[0, i] == k)
+                    if (circuit.AdjancenceMatrix[0, i] == neighbours[k])
                     {
                         flag = 1;
                     }
@@ -343,7 +432,7 @@ public class Circuit
             {
                 for (int j = 0; j < numberOfElements; j++)
                 {
-                    if (j == id2)
+                    if (circuit.AdjancenceMatrix[j,0] == id2)
                     {
                         newMatrix[i, j] = 0;
                         newMatrix[j, i] = 0;
@@ -389,7 +478,7 @@ public class Circuit
             {
                 for (int j = 0; j < numberOfElements; j++)
                 {
-                    if (j == id2)
+                    if (circuit.AdjancenceMatrix[j,0] == id2)
                     {
                         newMatrix[i, j] = 1;
                         newMatrix[j, i] = 1;

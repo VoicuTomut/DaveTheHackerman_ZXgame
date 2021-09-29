@@ -9,6 +9,7 @@ TagManager:
   - WallCollider
   - EnemyBullet
   - ShooterGame
+  - PotentialBarrier
   layers:
   - Default
   - TransparentFX

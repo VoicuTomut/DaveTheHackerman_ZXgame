@@ -86,7 +86,7 @@ public class EnemyController : MonoBehaviour
         {
             FollowPlayer();
         }
-        if(canWander)
+        if(canWander && !isStatic)
         {
             HandleWandering();
         }

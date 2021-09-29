@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,7 +40,25 @@ public class Projectile : MonoBehaviour
         rigidbody.velocity = speed * moveDirection;
     }
 
+    private void EnterPotentialBarrier(Collider other)
+    {
+        int deathChance = 0;
+        if(diesOnProjectiles)
+        {
+            deathChance = Random.Range(0, 100);
+            if (deathChance > 25) parentPool.DestroyObject(gameObject);
+            else Physics.IgnoreCollision(collider, other);
 
+        }
+        else
+        {
+            deathChance = Random.Range(0, 100);
+            if (deathChance > 50) parentPool.DestroyObject(gameObject);
+            else Physics.IgnoreCollision(collider, other);
+
+        }
+       
+    }
 
     public void SetParentPool(ObjectPool objectPool)
     {
@@ -52,6 +70,7 @@ public class Projectile : MonoBehaviour
     {
         string thisTag = gameObject.tag;
         string otherTag = collision.gameObject.tag;
+        //Physics.IgnoreCollision(collider, collision.collider, false);
         switch (thisTag)
         {
             case "PlayerBullet":
@@ -72,6 +91,11 @@ public class Projectile : MonoBehaviour
                                 break;
                             }
                         case "Untagged":
+                            {
+                                parentPool.DestroyObject(gameObject);
+                                break;
+                            }
+                        case "PotentialBarrier":
                             {
                                 parentPool.DestroyObject(gameObject);
                                 break;
@@ -117,6 +141,11 @@ public class Projectile : MonoBehaviour
                         case "EnemyBullet":
                             {
                                 Physics.IgnoreCollision(collider, collision.collider);
+                                break;
+                            }
+                        case "PotentialBarrier":
+                            {
+                                EnterPotentialBarrier(collision.collider);
                                 break;
                             }
 

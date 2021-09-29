@@ -16,12 +16,12 @@ public class CircuitLogic
         Element e3 = new Element(3, ElementType.Input, 2, 3);
         Element e4 = new Element(4, ElementType.Input, 3, 4);
         Element e5 = new Element(5, ElementType.ZG, 8, 3);
-        Element e6 = new Element(6, ElementType.ZR, 9, 4);
-        Element e7 = new Element(7, ElementType.ZR, 11, 2);
+        Element e6 = new Element(6, ElementType.Hadamart, 9, 4);
+        Element e7 = new Element(7, ElementType.ZR, 1, 2);
         Element e8 = new Element(8, ElementType.ZG, 10, 3);
-        Element e9 = new Element(9, ElementType.ZR, 13, 1);
+        Element e9 = new Element(9, ElementType.ZG, 1, 1);
         Element e10 = new Element(10, ElementType.ZG, 12, 4);
-        Element e11 = new Element(11, ElementType.ZG, 14, 3);
+        Element e11 = new Element(11, ElementType.ZG, 11, 3);
         Element e12 = new Element(12, ElementType.ZR, 15, 4);
         Element e13 = new Element(13, ElementType.ZR, 17, 1);
         Element e14 = new Element(14, ElementType.ZG, 16, 2);

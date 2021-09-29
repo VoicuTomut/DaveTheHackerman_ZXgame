@@ -115,7 +115,7 @@ public class VisualCircuit : MonoBehaviour
                         spawnedOutputs++;
                         break;
                     }
-                case ElementType.Square:
+                case ElementType.Hadamart:
                     {
                         hGates.Add(element);
                         break;
@@ -244,8 +244,10 @@ public class VisualCircuit : MonoBehaviour
     {
         if (selectedElement != null)
         {
+            selectedElement.Deselect();
             circuit = circuit.ChangeType(circuit, selectedElement.id);
             InitCircuit(circuit);
+            selectedElement = null;
         }
     }
 

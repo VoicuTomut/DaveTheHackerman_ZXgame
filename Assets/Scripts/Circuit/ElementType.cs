@@ -13,7 +13,7 @@ public enum ElementType
     Input,
     ZR,
     ZG,
-    Square,
+    Hadamart,
     Output
 }
 
