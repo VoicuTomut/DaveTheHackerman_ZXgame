@@ -37,14 +37,14 @@ namespace ZxDungeon.Logic
         public Circuit FuseElements(Circuit circuit, int id1, int id2)
         {
 
-            Element e1= circuit.Elements[0];
+            Element e1 = circuit.Elements[0];
             Element e2 = circuit.Elements[1];
 
-            for (int i =0; i < circuit.Elements.Count; i++)
+            for (int i = 0; i < circuit.Elements.Count; i++)
             {
                 if (circuit.Elements[i].id == id1)
                 {
-                   e1 = circuit.Elements[i];
+                    e1 = circuit.Elements[i];
                 }
                 if (circuit.Elements[i].id == id2)
                 {
@@ -53,7 +53,7 @@ namespace ZxDungeon.Logic
             }
 
             bool elementTypeFlag = true;
-            if (e1.elementType!= e2.elementType)
+            if (e1.elementType != e2.elementType)
             {
                 elementTypeFlag = false;
             }
@@ -62,7 +62,7 @@ namespace ZxDungeon.Logic
             List<int> e2Neighbours = GetNeighbours(circuit, id2);
 
             bool neighbourFlag = false;
-            for(int i = 0; i < e1Neighbours.Count; i++)
+            for (int i = 0; i < e1Neighbours.Count; i++)
             {
                 if (e1Neighbours[i] == id2)
                 {
@@ -132,15 +132,15 @@ namespace ZxDungeon.Logic
         {
             // change the elemebt type
             bool flag = true;
-            for(int i = 0; i < circuit.Elements.Count; i++)
+            for (int i = 0; i < circuit.Elements.Count; i++)
             {
                 if (circuit.Elements[i].id == id)
                 {
-                    if (circuit.Elements[i].elementType== ElementType.ZG)
+                    if (circuit.Elements[i].elementType == ElementType.ZG)
                     {
                         circuit.Elements[i].elementType = ElementType.ZR;
                     }
-                    else if(circuit.Elements[i].elementType == ElementType.ZR)
+                    else if (circuit.Elements[i].elementType == ElementType.ZR)
                     {
                         circuit.Elements[i].elementType = ElementType.ZG;
                     }
@@ -155,7 +155,7 @@ namespace ZxDungeon.Logic
             if (flag)
             {
 
-                
+
                 // Add the H gate (beteen the element and neighbous
                 List<int> elementNeighbours = GetNeighbours(circuit, id);
                 foreach (int neighbour in elementNeighbours)
@@ -165,14 +165,16 @@ namespace ZxDungeon.Logic
                     int idtake = GetNewId(circuit);
 
                     Element hsquare = new Element(idtake, ElementType.Square, 0, 1);
-                    int[,] hNeighbours = new int[neighbour, id];
+                    int[,] hNeighbours = new int[1, 2];
+                    hNeighbours[0, 0] = neighbour;
+                    hNeighbours[0, 1] = id;
                     circuit = AddNewElement(circuit, hsquare, hNeighbours);
                 }
             }
-            
+
 
             return circuit;
-           
+
         }
 
 
@@ -180,7 +182,7 @@ namespace ZxDungeon.Logic
         {
             // check for an empty id
             bool idtake = true;
-            int newID = circuit.AdjancenceMatrix[0, circuit.AdjancenceMatrix.GetLength(1)-1];
+            int newID = circuit.AdjancenceMatrix[0, circuit.AdjancenceMatrix.GetLength(1) - 1];
             while (idtake)
             {
                 newID = newID + 1;
@@ -201,7 +203,7 @@ namespace ZxDungeon.Logic
         /// <summary>
         /// Adds a new element to the circuit graph
         /// </summary>
-        public Circuit AddNewElement(Circuit circuit, Element element , int[,] neighbours)
+        public Circuit AddNewElement(Circuit circuit, Element element, int[,] neighbours)
         {
 
             var elements = circuit.Elements;
@@ -213,9 +215,9 @@ namespace ZxDungeon.Logic
 
             // extend the borders
             newMatrix[0, numberOfElements] = element.id;
-            newMatrix[numberOfElements,0] = element.id;
+            newMatrix[numberOfElements, 0] = element.id;
 
-            for (int i =0; i< numberOfElements; i++)
+            for (int i = 0; i < numberOfElements; i++)
             {
                 //Add new connection between neighbours and new element
                 if (i != 0)
@@ -223,45 +225,45 @@ namespace ZxDungeon.Logic
                     int flag = 0;
                     for (int k = 0; k < neighbours.Length; k++)
                     {
-                        if (circuit.AdjancenceMatrix[0, i] == k)
+                        if (circuit.AdjancenceMatrix[0, i] == neighbours[0, k])//
                         {
                             flag = 1;
                         }
                     }
-                    newMatrix[numberOfElements , i] = flag;
-                    newMatrix[i, numberOfElements ] = flag;
+                    newMatrix[numberOfElements, i] = flag;
+                    newMatrix[i, numberOfElements] = flag;
                 }
 
                 //Keep the old connections 
                 for (int j = i; j < numberOfElements; j++)
                 {
-                    newMatrix[i,j] = circuit.AdjancenceMatrix[i,j];
+                    newMatrix[i, j] = circuit.AdjancenceMatrix[i, j];
                     newMatrix[j, i] = circuit.AdjancenceMatrix[j, i];
                 }
                 newMatrix[i, i] = 0;
             }
             newMatrix[numberOfElements, numberOfElements] = 0;
 
-            return new Circuit (elements, newMatrix);
+            return new Circuit(elements, newMatrix);
         }
 
         /// <summary>
         /// Removes an element from the circuit  and adiacent edges 
         /// </summary>
-        public Circuit  RemoveElement(Circuit circuit, int id)
+        public Circuit RemoveElement(Circuit circuit, int id)
         {
 
             List<Element> remainingElements = new List<Element>();
 
             //remouve the circuit elements list from the list 
-            for( int i=0; i < circuit.Elements.Count; i++)
+            for (int i = 0; i < circuit.Elements.Count; i++)
             {
                 if (circuit.Elements[i].id != id)
                 {
                     remainingElements.Add(circuit.Elements[i]);
                 }
             }
-            
+
 
             // create the new AdjancenceMatrix
             int numberOfElements = circuit.AdjancenceMatrix.GetLength(1);
@@ -270,7 +272,7 @@ namespace ZxDungeon.Logic
             //recreate the first line of the matrix and first row
             int k = 0; // the line index in new matrix
             int position = 0; //position of the outcast id
-            for(int i=0;i< numberOfElements ; i++)
+            for (int i = 0; i < numberOfElements; i++)
             {
                 if (circuit.AdjancenceMatrix[0, i] != id)
                 {
@@ -292,21 +294,21 @@ namespace ZxDungeon.Logic
                 if (circuit.AdjancenceMatrix[0, i] != id)
                 {
                     int l = 1; // the row index in new matrix
-                    for (int j = 1; j < numberOfElements ; j++)
+                    for (int j = 1; j < numberOfElements; j++)
                     {
                         if (circuit.AdjancenceMatrix[j, 0] != id)
                         {
                             newMatrix[k, l] = circuit.AdjancenceMatrix[i, j];
-                
+
                             l = l + 1;
                         }
                     }
-                     
+
                     newMatrix[k, k] = 0;
                     k = k + 1;
                 }
             }
-            
+
 
             return new Circuit(remainingElements, newMatrix);
         }
@@ -315,7 +317,7 @@ namespace ZxDungeon.Logic
         /// <summary>
         /// Removes an edge from the circuit graph 
         /// </summary>
-        public Circuit RemoveEdge(Circuit circuit, int id1,int id2)
+        public Circuit RemoveEdge(Circuit circuit, int id1, int id2)
         {
 
             List<Element> remainingElements = new List<Element>();
@@ -324,9 +326,9 @@ namespace ZxDungeon.Logic
 
             // create the new AdjancenceMatrix
             int numberOfElements = circuit.AdjancenceMatrix.GetLength(1);
-            int[,] newMatrix = new int[numberOfElements , numberOfElements ];
+            int[,] newMatrix = new int[numberOfElements, numberOfElements];
 
-        
+
             //eliminate edge from matrix 
             for (int i = 0; i < numberOfElements; i++)
             {
@@ -347,7 +349,7 @@ namespace ZxDungeon.Logic
                         if (j == id2)
                         {
                             newMatrix[i, j] = 0;
-                            newMatrix[j, i] = 0; 
+                            newMatrix[j, i] = 0;
                         }
 
                     }
@@ -409,12 +411,12 @@ namespace ZxDungeon.Logic
         /// </summary>
         public List<int> GetNeighbours(Circuit circuit, int id1)
         {
-            List<int> neighbours= new List<int>();
+            List<int> neighbours = new List<int>();
             int numberOfElements = circuit.AdjancenceMatrix.GetLength(1); //number of elemens in the initial circuit +1
 
-            for(int i=1;i< numberOfElements; i++)
+            for (int i = 1; i < numberOfElements; i++)
             {
-                if (circuit.AdjancenceMatrix[i,0] == id1)
+                if (circuit.AdjancenceMatrix[i, 0] == id1)
                 {
                     for (int j = 1; j < numberOfElements; j++)
                     {

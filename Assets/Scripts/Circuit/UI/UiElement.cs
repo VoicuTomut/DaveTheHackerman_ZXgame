@@ -147,7 +147,7 @@ namespace ZxDungeon.UI
                 Text t = go.GetComponent<Text>();
                 if (type == ElementType.ZR) t.color = new Color(textProperties.ZR.r, textProperties.ZR.g, textProperties.ZR.b);
                 if (type == ElementType.ZG) t.color = new Color(textProperties.ZG.r, textProperties.ZG.g, textProperties.ZG.b);
-                t.text = value.ToString();
+                t.text = id.ToString();
                 t.transform.position = Camera.main.WorldToScreenPoint(transform.position);
                 uiValue = go;
             }
