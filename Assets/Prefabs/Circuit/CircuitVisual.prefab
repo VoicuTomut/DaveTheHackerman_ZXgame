@@ -45,9 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
-  uiElementProperties: {fileID: 11400000, guid: 91b8ae364a8960e4fb24d079bfdb5149,
-    type: 2}
-  textProperties: {fileID: 11400000, guid: db4310004d3c3a843a719d5e66cea8f0, type: 2}
+  uiElementLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  lineElementLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  selectedElement: {fileID: 0}
 --- !u!114 &1628719559194481319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,9 +82,9 @@ MonoBehaviour:
       type: 3}
     size: 5
   - tag: Square
-    prefab: {fileID: 2030417998527933239, guid: 09aaafa8501416441b7624add99dfcd5,
+    prefab: {fileID: 4756828493116396516, guid: 1d6a3f98435f07f49a3ee747422646e8,
       type: 3}
-    size: 10
+    size: 50
   - tag: Line
     prefab: {fileID: 5094569734892369470, guid: 517ae7c8fc082364ca2f0ae1266b0d66,
       type: 3}

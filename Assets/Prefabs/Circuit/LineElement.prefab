@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0b12f751997d34bb9c462360120fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   connectionOne: {fileID: 0}
   connectionTwo: {fileID: 0}
+  lineWidth: 0.25
 --- !u!120 &5094569734892369468
 LineRenderer:
   m_ObjectHideFlags: 0

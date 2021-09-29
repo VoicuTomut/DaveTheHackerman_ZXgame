@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
             
         }
 
-        playerObject.rotation = Quaternion.Euler(-90,  Mathf.Atan2( mouseProjectedPosition.x - transform.position.x, mouseProjectedPosition.z - transform.position.z) * Mathf.Rad2Deg ,0);
+        playerObject.rotation = Quaternion.Euler(-90,  Mathf.Atan2( mouseProjectedPosition.x - transform.position.x, mouseProjectedPosition.z - transform.position.z) * Mathf.Rad2Deg  ,0);
 
     }
 

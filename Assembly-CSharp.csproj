@@ -57,21 +57,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Resources\Circuit\Data\TextProperties.cs" />
-    <Compile Include="Assets\Resources\Circuit\Data\UiElementProperties.cs" />
-    <Compile Include="Assets\Scripts\Circuit\Interactive\CircuitMaster.cs" />
-    <Compile Include="Assets\Scripts\Circuit\Logic\Circuit.cs" />
-    <Compile Include="Assets\Scripts\Circuit\Logic\CircuitLogic.cs" />
-    <Compile Include="Assets\Scripts\Circuit\Logic\Element.cs" />
-    <Compile Include="Assets\Scripts\Circuit\Logic\ElementType.cs" />
-    <Compile Include="Assets\Scripts\Circuit\Logic\Fraction.cs" />
-    <Compile Include="Assets\Scripts\Circuit\UI\ActionManager.cs" />
-    <Compile Include="Assets\Scripts\Circuit\UI\AdvancedObjectPool.cs" />
-    <Compile Include="Assets\Scripts\Circuit\UI\LineElement.cs" />
-    <Compile Include="Assets\Scripts\Circuit\UI\SelectionManager.cs" />
-    <Compile Include="Assets\Scripts\Circuit\UI\UiAction.cs" />
-    <Compile Include="Assets\Scripts\Circuit\UI\UiActionType.cs" />
-    <Compile Include="Assets\Scripts\Circuit\UI\UiElement.cs" />
-    <Compile Include="Assets\Scripts\Circuit\UI\VisualCircuit.cs" />
+    <Compile Include="Assets\Scripts\Circuit\AdvancedObjectPool.cs" />
+    <Compile Include="Assets\Scripts\Circuit\Circuit.cs" />
+    <Compile Include="Assets\Scripts\Circuit\CircuitLogic.cs" />
+    <Compile Include="Assets\Scripts\Circuit\CircuitMaster.cs" />
+    <Compile Include="Assets\Scripts\Circuit\Element.cs" />
+    <Compile Include="Assets\Scripts\Circuit\ElementType.cs" />
+    <Compile Include="Assets\Scripts\Circuit\Fraction.cs" />
+    <Compile Include="Assets\Scripts\Circuit\LineElement.cs" />
+    <Compile Include="Assets\Scripts\Circuit\UiElement.cs" />
+    <Compile Include="Assets\Scripts\Circuit\VisualCircuit.cs" />
     <Compile Include="Assets\Scripts\Game\DamageEffects.cs" />
     <Compile Include="Assets\Scripts\Game\Damageable.cs" />
     <Compile Include="Assets\Scripts\Game\DeathEffects.cs" />

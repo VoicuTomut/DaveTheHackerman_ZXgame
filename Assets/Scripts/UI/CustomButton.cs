@@ -32,22 +32,24 @@ public class CustomButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         text.fontSize = normalFontSize;
         text.color = normalColor;
         //background.sprite = normalBackground;
-        decoration.enabled = false;
+        if(decoration != null) decoration.enabled = false;
     }
 
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        audioSource.PlayOneShot(onClickClip);
+        onClick.Invoke();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+       
         audioSource.PlayOneShot(onHoverClip);
         //background.sprite = hoveredBackground;
         text.fontSize = highlightFontSize;
         text.color = highlightColor;
         decoration.enabled = true;
+
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -58,4 +60,5 @@ public class CustomButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         text.color = normalColor;
 
     }
+   
 }
