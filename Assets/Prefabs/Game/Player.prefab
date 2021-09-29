@@ -126,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerObject: {fileID: 4748806053026066480}
   cameraTransform: {fileID: 0}
-  cameraTarget: {fileID: 5074884483210261183}
+  cameraTarget: {fileID: 0}
   projectileSpawn: {fileID: 5074884482392681099}
   audioSource: {fileID: 0}
   fireRate: 0.1
@@ -157,9 +157,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f13804dc35e85084b923dae3dd722867, type: 3}
+  m_audioClip: {fileID: 8300000, guid: da4140e8f951fd34d8fbfbf46b6904e5, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0

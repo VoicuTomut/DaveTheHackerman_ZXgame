@@ -71,7 +71,14 @@ public class Projectile : MonoBehaviour
                                 parentPool.DestroyObject(gameObject);
                                 break;
                             }
+                        case "Untagged":
+                            {
+                                parentPool.DestroyObject(gameObject);
+                                break;
+                            }
                     }
+                    
+
                     break;
                 }
             case "EnemyBullet":
@@ -112,10 +119,11 @@ public class Projectile : MonoBehaviour
                                 Physics.IgnoreCollision(collider, collision.collider);
                                 break;
                             }
+
                     }
+
                     break;
                 }
-
         }
 
     

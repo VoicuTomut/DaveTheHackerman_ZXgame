@@ -8,9 +8,11 @@ public class ObjectPool : MonoBehaviour
     public List<GameObject> poolObjects = new List<GameObject>();
     public int poolSize;
     public GameObject prefab;
+    private Transform parent;
     // Start is called before the first frame update
     private void Awake()
     {
+        parent = GameObject.FindGameObjectWithTag("ShooterGame").transform;
         InitialisePool();
     }
 
@@ -19,7 +21,7 @@ public class ObjectPool : MonoBehaviour
         poolObjects = new List<GameObject>();
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject obj = (GameObject)Instantiate(prefab);
+            GameObject obj = (GameObject)Instantiate(prefab, parent);
             obj.SetActive(false);
             poolObjects.Add(obj);
         }
@@ -31,6 +33,19 @@ public class ObjectPool : MonoBehaviour
             GameObject obj = poolObjects[0];
             poolObjects.RemoveAt(0);
             obj.transform.position = position;
+            obj.SetActive(true);
+            return obj;
+        }
+        return null;
+    }
+    public GameObject InstantiateObject(Transform parent, Vector3 position)
+    {
+        if (poolObjects.Count > 0)
+        {
+            GameObject obj = poolObjects[0];
+            poolObjects.RemoveAt(0);
+            obj.transform.position = position;
+            obj.transform.SetParent(parent);
             obj.SetActive(true);
             return obj;
         }

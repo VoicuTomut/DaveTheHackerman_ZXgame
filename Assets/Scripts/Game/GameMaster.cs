@@ -15,26 +15,25 @@ public class GameMaster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //SetAllInactive();
-        //currentActive = mainMenu;
-        //currentActive.SetActive(true);
+        SetAllInactive();
+        currentActive = mainMenu;
+        currentActive.SetActive(true);
     }
 
-    //public void StartGame()
-    //{
-    //    SetAllInactive();
-    //    currentActive.SetActive(false);
-    //    currentActive = shooterGame;
-    //    currentActive.SetActive(true);
-    //    player = FindObjectOfType<PlayerController>();
-    //}
+    public void StartGame()
+    {
+        SetAllInactive();
+        currentActive.SetActive(false);
+        currentActive = shooterGame;
+        currentActive.SetActive(true);
+        player = FindObjectOfType<PlayerController>();
+    }
 
     public void BackToMainMenu()
     {
         SetAllInactive();
         currentActive.SetActive(false);
         currentActive = mainMenu;
-        //currentActive.GetComponentInChildren<Camera>()
         currentActive.SetActive(true);
     }
 
@@ -55,6 +54,8 @@ public class GameMaster : MonoBehaviour
 
         }
     }
+
+
 
 
     // Update is called once per frame

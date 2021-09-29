@@ -18,7 +18,7 @@ namespace ZxDungeon.UI
         public Vector3 initialPosition;
         public TextProperties textProperties;
         public VisualCircuit visualCircuit;
-        private Collider collider;
+        private new Collider collider;
         private bool isDragging = false;
         private bool canBeDragged = true;
 

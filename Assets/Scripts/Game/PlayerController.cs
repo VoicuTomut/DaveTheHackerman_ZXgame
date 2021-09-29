@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+ 
     [SerializeField]
     private Transform playerObject;
     [SerializeField]
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private Transform projectileSpawn;
     [SerializeField]
     AudioSource audioSource;
+    private Transform bulletParent;
     private ObjectPool objectPool;
     private Vector3 cameraVelocity = Vector3.zero;
     new Rigidbody rigidbody;
