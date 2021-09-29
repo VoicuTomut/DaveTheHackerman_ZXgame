@@ -655,6 +655,9 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Rider.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
@@ -665,7 +668,11 @@
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
+<<<<<<< HEAD
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+=======
+      <HintPath>Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+>>>>>>> 590492dd835bd834a63f33797583d435677c7b19
     </Reference>
   </ItemGroup>
   <ItemGroup>
