@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProjectileSpawner : MonoBehaviour
 {
 
-    private ObjectPool objectPool;
+    public ObjectPool objectPool;
     [SerializeField]
     private Material destructableBulletMaterial;
     [SerializeField]
@@ -18,20 +18,18 @@ public class ProjectileSpawner : MonoBehaviour
     private bool canSwitchBurst;
     private int currentBurst=0;
     bool isDestructableBurst = true;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         objectPool = GetComponent<ObjectPool>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void SpawnProjectile(bool destructable)
     {
-        GameObject obj = objectPool.InstantiateObject(transform.position);
+        GameObject obj = objectPool.InstantiateObject( transform.position);
         if(destructable)
         {
             obj.GetComponent<MeshRenderer>().material = destructableBulletMaterial;
