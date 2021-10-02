@@ -1,78 +1,114 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
-    public GameObject shooterGame;
-    public GameObject circuitGame;
-    public GameObject mainMenu;
+    public GameObject transitionScreenObject;
+    public TransitionScreen transitionScreen;
     public GameObject pauseMenu;
-    private GameObject currentActive;
     private PlayerController player;
     private bool isTimeStopped = false;
 
-    // Start is called before the first frame update
+    public static GameMaster instace;
+
+    private void Awake()
+    {
+        instace = this;
+        DontDestroyOnLoad(this);
+    }
+    //Start is called before the first frame update
     void Start()
     {
-        //SetAllInactive();
-        //currentActive = mainMenu;
-        //currentActive.SetActive(true);
+        transitionScreenObject.SetActive(false);
     }
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseUnpauseGame();
+        }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            player = FindObjectOfType<PlayerController>();
+            isTimeStopped = !isTimeStopped;
+            if (isTimeStopped)
+            {
+                //pauseMenu.SetActive(true);
+                Time.timeScale = 0;
+                if (player != null) player.enabled = false;
+            }
+            else
+            {
+                //pauseMenu.SetActive(false);
+                if (player != null) player.enabled = true;
+                Time.timeScale = 1;
 
+            }
+        }
+
+    }
     public void StartGame()
     {
-        SetAllInactive();
-        currentActive.SetActive(false);
-        currentActive = shooterGame;
-        currentActive.SetActive(true);
-        player = FindObjectOfType<PlayerController>();
+        StartCoroutine(LoadLevel(1));
     }
+
+    public void OnLevelClear()
+    {
+        StartCoroutine(TransitionScreen());
+    }
+
+    IEnumerator LoadLevel(int index)
+    {
+        transitionScreenObject.SetActive(true);
+        yield return new WaitForSeconds(transitionScreen.OnInit());
+        SceneManager.LoadScene(index);
+        yield return new WaitForSeconds(transitionScreen.OnStart());
+        transitionScreenObject.SetActive(false);
+    }
+    IEnumerator TransitionScreen()
+    {
+        transitionScreenObject.SetActive(true);
+        yield return new WaitForSeconds(transitionScreen.OnClear());
+        yield return new WaitForSeconds(transitionScreen.OnSwitch());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        yield return new WaitForSeconds(transitionScreen.OnStart());
+        transitionScreenObject.SetActive(false);
+    }
+ 
+
 
     public void BackToMainMenu()
     {
-        SetAllInactive();
-        currentActive.SetActive(false);
-        currentActive = mainMenu;
-        currentActive.SetActive(true);
+        PauseUnpauseGame();
+        StartCoroutine(LoadLevel(0));
+
     }
 
     public void PauseUnpauseGame()
     {
-        isTimeStopped = !isTimeStopped;
-        if (isTimeStopped)
+        if (SceneManager.GetActiveScene().buildIndex >0)
         {
-            pauseMenu.SetActive(true);
-            Time.timeScale = 0;
-            player.enabled = false;
-        }
-        else
-        {
-            pauseMenu.SetActive(false);
-            player.enabled = true;
-            Time.timeScale = 1;
+            player = FindObjectOfType<PlayerController>();
+            isTimeStopped = !isTimeStopped;
+            if (isTimeStopped)
+            {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0;
+                if (player != null) player.enabled = false;
+            }
+            else
+            {
+                pauseMenu.SetActive(false);
+                if (player != null) player.enabled = true;
+                Time.timeScale = 1;
 
+            }
         }
     }
 
 
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
-        {
-            PauseUnpauseGame();
-        }
-
-    }
-
-    private void SetAllInactive()
-    {
-        mainMenu.SetActive(false);
-        shooterGame.SetActive(false);
-        pauseMenu.SetActive(false);
-        circuitGame.SetActive(false);
-    }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
  
+    public new Rigidbody rigidbody;
     [SerializeField]
     private Transform playerObject;
     [SerializeField]
@@ -19,7 +20,6 @@ public class PlayerController : MonoBehaviour
     private Transform bulletParent;
     private ObjectPool objectPool;
     private Vector3 cameraVelocity = Vector3.zero;
-    new Rigidbody rigidbody;
 
 
     private Vector3 moveDirection;
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
     private void Fire()
     {
-        GameObject obj = objectPool.InstantiateObject(projectileSpawn.position);
+        GameObject obj = objectPool.InstantiateObject( projectileSpawn.position);
         Projectile p = obj.GetComponent<Projectile>();
         if(p!=null)
         {

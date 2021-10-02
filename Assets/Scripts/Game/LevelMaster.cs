@@ -6,27 +6,50 @@ using UnityEngine;
 public class LevelMaster : MonoBehaviour
 {
     public GameObject[] Levels;
-    public GameObject transitionScreen;
-    private int currentLevel = 0;
+    public GameObject transitionScreenObject;
+    public TransitionScreen transitionScreen;
+    private int currentLevelIndex = 0;
+    private GameObject currentLevel;
     // Start is called before the first frame update
-    void Start()
+
+
+    
+    private void StartLevel(int id)
     {
-        Levels[currentLevel].GetComponent<Level>().SetLevelMaster(this);
+        currentLevel = Levels[id];
+        //currentLevel.GetComponent<Level>().SetLevelMaster(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnLevelClear(int id)
     {
-        
+        StartCoroutine(TransitionScreen(id));      
     }
 
-    public void NextLevel(int id)
+    IEnumerator TransitionScreen(int id)
     {
-        transitionScreen.SetActive(true);
-        Destroy(Levels[id]);
-
+        transitionScreenObject.SetActive(true);  
+        yield return new WaitForSeconds(transitionScreen.OnClear());
+        yield return new WaitForSeconds(transitionScreen.OnSwitch());
+        currentLevel = null;
+        //Destroy(currentLevel);
         int index = id++;
-        if(!(index>Levels.Length))
-        Instantiate(Levels[id + 1]);
+        if (!(index > Levels.Length)) currentLevel = Instantiate(Levels[id + 1]);
+        //currentLevel.GetComponent<Level>().SetLevelMaster(this);
+        yield return new WaitForSeconds(transitionScreen.OnStart());
+        transitionScreenObject.SetActive(false);
     }
+
+    void OnEnable()
+    {
+        if(!currentLevel)
+        {
+            transitionScreenObject.SetActive(false);
+            //Levels[currentLevelIndex].GetComponent<Level>().SetLevelMaster(this);
+            StartLevel(currentLevelIndex);
+        }
+    }
+    //void OnDisable()
+    //{
+    //    Destroy(currentLevel);
+    //}
 }

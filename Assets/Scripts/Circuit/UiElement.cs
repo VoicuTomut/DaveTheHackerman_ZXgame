@@ -77,7 +77,7 @@ public class UiElement : MonoBehaviour
                 {
                     if(e.uiValue != null) e.uiValue.gameObject.SetActive(false);
 
-                    Circuit c = visualCircuit.circuit.PushElements(visualCircuit.circuit, id, e.id);
+                    Circuit c = visualCircuit.circuit.FuseElements(visualCircuit.circuit, id, e.id);
                     if (c != null)
                     {
                         visualCircuit.circuit = c;

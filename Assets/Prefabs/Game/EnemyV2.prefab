@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd690a17a14a2024da01990068469921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPool: {fileID: 0}
   destructableBulletMaterial: {fileID: 2100000, guid: 8091885740d582b498636e33071ebbff,
     type: 2}
   indestructableBulletMaterial: {fileID: 2100000, guid: aa349da18c088344185e7259f78e71c1,
@@ -193,7 +194,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccdc5db6771e7954f9bb4102731a9061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePivot: {fileID: 1883224074093196441}
+  projectilePivot: {fileID: 6832759490222381507, guid: fe093cf665b16214ca8d76234f8a524b,
+    type: 3}
+  spawnEffects: {fileID: 0}
   deathEffects: {fileID: 3535411638819409211, guid: 091ef1aad60c7eb49ad2d7fdeffd226e,
     type: 3}
   normalColor: {r: 0, g: 0, b: 0, a: 0}
@@ -210,8 +213,11 @@ MonoBehaviour:
   fireRate: 0.25
   delayBeforeStartShooting: 1.5
   isStatic: 1
+  canWander: 0
   canTurn: 0
   canRotateProjectilePivot: 1
+  wanderRadius: 0
+  targetDestination: {x: 0, y: 0, z: 0}
 --- !u!82 &1883224072995692341
 AudioSource:
   m_ObjectHideFlags: 0
@@ -367,6 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd690a17a14a2024da01990068469921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPool: {fileID: 0}
   destructableBulletMaterial: {fileID: 2100000, guid: 8091885740d582b498636e33071ebbff,
     type: 2}
   indestructableBulletMaterial: {fileID: 2100000, guid: aa349da18c088344185e7259f78e71c1,
@@ -433,6 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd690a17a14a2024da01990068469921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPool: {fileID: 0}
   destructableBulletMaterial: {fileID: 2100000, guid: 8091885740d582b498636e33071ebbff,
     type: 2}
   indestructableBulletMaterial: {fileID: 2100000, guid: aa349da18c088344185e7259f78e71c1,
@@ -533,6 +541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd690a17a14a2024da01990068469921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPool: {fileID: 0}
   destructableBulletMaterial: {fileID: 2100000, guid: 8091885740d582b498636e33071ebbff,
     type: 2}
   indestructableBulletMaterial: {fileID: 2100000, guid: aa349da18c088344185e7259f78e71c1,

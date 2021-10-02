@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd690a17a14a2024da01990068469921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPool: {fileID: 0}
   destructableBulletMaterial: {fileID: 2100000, guid: 8091885740d582b498636e33071ebbff,
     type: 2}
   indestructableBulletMaterial: {fileID: 2100000, guid: aa349da18c088344185e7259f78e71c1,
@@ -146,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd690a17a14a2024da01990068469921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPool: {fileID: 0}
   destructableBulletMaterial: {fileID: 2100000, guid: 8091885740d582b498636e33071ebbff,
     type: 2}
   indestructableBulletMaterial: {fileID: 2100000, guid: aa349da18c088344185e7259f78e71c1,
@@ -212,6 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd690a17a14a2024da01990068469921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPool: {fileID: 0}
   destructableBulletMaterial: {fileID: 2100000, guid: 8091885740d582b498636e33071ebbff,
     type: 2}
   indestructableBulletMaterial: {fileID: 2100000, guid: aa349da18c088344185e7259f78e71c1,
@@ -278,6 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd690a17a14a2024da01990068469921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPool: {fileID: 0}
   destructableBulletMaterial: {fileID: 2100000, guid: 8091885740d582b498636e33071ebbff,
     type: 2}
   indestructableBulletMaterial: {fileID: 2100000, guid: aa349da18c088344185e7259f78e71c1,
@@ -344,6 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd690a17a14a2024da01990068469921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPool: {fileID: 0}
   destructableBulletMaterial: {fileID: 2100000, guid: 8091885740d582b498636e33071ebbff,
     type: 2}
   indestructableBulletMaterial: {fileID: 2100000, guid: aa349da18c088344185e7259f78e71c1,
@@ -410,6 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd690a17a14a2024da01990068469921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPool: {fileID: 0}
   destructableBulletMaterial: {fileID: 2100000, guid: 8091885740d582b498636e33071ebbff,
     type: 2}
   indestructableBulletMaterial: {fileID: 2100000, guid: aa349da18c088344185e7259f78e71c1,
@@ -559,6 +565,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePivot: {fileID: 838434208841194055}
+  spawnEffects: {fileID: 6832759490222381504, guid: fe093cf665b16214ca8d76234f8a524b,
+    type: 3}
   deathEffects: {fileID: 3535411638819409211, guid: 091ef1aad60c7eb49ad2d7fdeffd226e,
     type: 3}
   normalColor: {r: 0, g: 0, b: 0, a: 0}

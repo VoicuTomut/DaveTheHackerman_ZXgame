@@ -80,6 +80,7 @@ public class Projectile : MonoBehaviour
                     {
                         case "WallCollider":
                             {
+                              
                                 parentPool.DestroyObject(gameObject);
                                 break;
                             }
@@ -111,6 +112,7 @@ public class Projectile : MonoBehaviour
                     {
                         case "WallCollider":
                             {
+                                if (!parentPool) Debug.Log("The parentPool was destroyed");
                                 parentPool.DestroyObject(gameObject);
                                 break;
                             }

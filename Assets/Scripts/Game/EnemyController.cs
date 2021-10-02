@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+
+
     [SerializeField]
     private Transform projectilePivot;
+    [SerializeField]
+    private GameObject spawnEffects;
     [SerializeField]
     private GameObject deathEffects;
     [SerializeField]
@@ -56,7 +60,7 @@ public class EnemyController : MonoBehaviour
         audioSource.playOnAwake = false;
         currentHealth = maxHealth;
         meshRenderer = GetComponent<MeshRenderer>();
-        StartCoroutine(DelayShooting(delayBeforeStartShooting * (Random.Range(5, 16) / 10)));
+        StartCoroutine(DelayShooting(delayBeforeStartShooting * (Random.Range(10, 21) / 10)));
         if(canWander)
         {
             targetDestination = (Random.insideUnitSphere * wanderRadius) + transform.position;
@@ -95,6 +99,7 @@ public class EnemyController : MonoBehaviour
     private void HandleWandering()
     {
         RaycastHit hit;
+        Debug.DrawLine(transform.position, transform.position - targetDestination, Color.red);
         Physics.Raycast(transform.position, targetDestination, out hit, 3f);
         if (hit.collider != null)
         {
@@ -185,6 +190,8 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage()
     {
+       
+
         currentHealth--;
         if (currentHealth <= 0)
         {
@@ -192,7 +199,7 @@ public class EnemyController : MonoBehaviour
             go.transform.position = transform.position;
             DeathEffects de = go.GetComponent<DeathEffects>();
             de.PlayDeathEffects();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             return;
         }
         GameObject obj = effectsPool.InstantiateObject(transform);
@@ -212,5 +219,20 @@ public class EnemyController : MonoBehaviour
     {
         yield return new WaitForSeconds(amount);
         cooldownTime = 0;
+    }
+    private void OnEnable()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer.enabled = false;
+        GameObject go = Instantiate(spawnEffects, transform);
+        StartCoroutine(Spawn(go));
+    }
+
+    IEnumerator Spawn(GameObject g)
+    {
+        yield return new WaitForSeconds(0.5f);
+        meshRenderer.enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        Destroy(g);
     }
 }

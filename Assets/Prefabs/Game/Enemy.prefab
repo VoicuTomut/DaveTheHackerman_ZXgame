@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd690a17a14a2024da01990068469921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPool: {fileID: 0}
   destructableBulletMaterial: {fileID: 2100000, guid: 8091885740d582b498636e33071ebbff,
     type: 2}
   indestructableBulletMaterial: {fileID: 2100000, guid: aa349da18c088344185e7259f78e71c1,
@@ -130,7 +131,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!23 &2091596385782077850
 MeshRenderer:
@@ -192,21 +193,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePivot: {fileID: 5224837451202130295}
+  spawnEffects: {fileID: 6832759490222381504, guid: fe093cf665b16214ca8d76234f8a524b,
+    type: 3}
   deathEffects: {fileID: 3535411638819409211, guid: 091ef1aad60c7eb49ad2d7fdeffd226e,
     type: 3}
   normalColor: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 0}
   damageColor: {r: 1, g: 1, b: 1, a: 0}
   projectileSpawnPoints:
   - {fileID: 781735403}
-  maxHealth: 20
+  maxHealth: 15
   movementSpeed: 4
   turnSpeed: 4
   projectilePivotRotateSpeed: 2
   fireRate: 1
   delayBeforeStartShooting: 1.5
   isStatic: 0
+  canWander: 0
   canTurn: 1
   canRotateProjectilePivot: 0
+  wanderRadius: 0
+  targetDestination: {x: 0, y: 0, z: 0}
 --- !u!82 &1150262269
 AudioSource:
   m_ObjectHideFlags: 0
