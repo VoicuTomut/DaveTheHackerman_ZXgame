@@ -1,22 +1,24 @@
-﻿<Properties StartupConfiguration="{0ECF1EB2-F84A-2085-AEFE-70D0288B0C9E}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Circuit/Logic/Circuit.cs">
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Circuit/CircuitMaster.cs">
     <Files>
-      <File FileName="Assets/Scripts/Circuit/Interactive/CircuitMaster.cs" Line="23" Column="13" />
-      <File FileName="Assets/Scripts/Circuit/Logic/Circuit.cs" Line="88" Column="1" />
-      <File FileName="Assets/Scripts/Circuit/UI/UiElement.cs" Line="150" Column="28" />
-      <File FileName="Assets/Scripts/Circuit/Logic/Element.cs" />
+      <File FileName="Assets/Scripts/Game/Damageable.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Circuit/Circuit.cs" Line="553" Column="24" />
+      <File FileName="Assets/Scripts/Circuit/CircuitLogic.cs" Line="12" Column="20" />
+      <File FileName="Assets/Scripts/Circuit/CircuitMaster.cs" Line="21" Column="44" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="DodoBoys" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="Circuit" expanded="True">
-                  <Node name="Interactive" expanded="True" />
-                  <Node name="Logic" expanded="True">
-                    <Node name="Circuit.cs" selected="True" />
+            <Node name="Assembly-CSharp" expanded="True">
+              <Node name="Assets" expanded="True">
+                <Node name="Materials" expanded="True" />
+                <Node name="Resources" expanded="True" />
+                <Node name="Scripts" expanded="True">
+                  <Node name="Circuit" expanded="True">
+                    <Node name="CircuitMaster.cs" selected="True" />
                   </Node>
+                  <Node name="Game" expanded="True" />
                   <Node name="UI" expanded="True" />
                 </Node>
               </Node>
@@ -34,6 +36,7 @@
       <Breakpoint file="/Users/voicutu/Documents/GitHub/DodoBoys/Assets/Scripts/Circuit/Logic/Circuit.cs" relfile="Assets/Scripts/Circuit/Logic/Circuit.cs" line="62" column="1" />
       <Breakpoint file="/Users/voicutu/Documents/GitHub/DodoBoys/Assets/Scripts/Circuit/Logic/Circuit.cs" relfile="Assets/Scripts/Circuit/Logic/Circuit.cs" line="88" column="1" />
       <Breakpoint file="/Users/voicutu/Documents/GitHub/DodoBoys/Assets/Scripts/Circuit/Logic/Circuit.cs" relfile="Assets/Scripts/Circuit/Logic/Circuit.cs" line="102" column="1" />
+      <Breakpoint file="/Users/voicutu/Documents/GitHub/DodoBoys/Assets/Scripts/Circuit/Circuit.cs" relfile="Assets/Scripts/Circuit/Circuit.cs" line="562" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
