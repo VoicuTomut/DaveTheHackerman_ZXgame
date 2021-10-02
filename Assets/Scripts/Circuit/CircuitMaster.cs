@@ -18,7 +18,7 @@ public class CircuitMaster : MonoBehaviour
     {
         circuitLogic = new CircuitLogic();
         circuit = circuitLogic.GenerateCircuit();
-        circuit = circuit.Line_circuit_02(7,0.9);
+        // circuit = circuit.FuseElements(circuit, 5, 14);
         GameObject visCircuit = Instantiate(visualCircuitObject, transform);
         GameObject canvas = Instantiate(canvasObject, transform);
         VisualCircuit cv = visCircuit.GetComponent<VisualCircuit>();
