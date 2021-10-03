@@ -462,8 +462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\nTomut Andrei-Voicu\nGame design \nProgramming \nQuantum computing\nBringing
-    snacks\n"
+  m_text: "\nIdiot Two\nGame design \nProgramming \nQuantum computing\nBringing snacks\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2668,7 +2667,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 349, y: 52.7}
+  m_AnchoredPosition: {x: 349, y: 52.69995}
   m_SizeDelta: {x: -1340.1444, y: -450.7201}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1495278859
@@ -2779,7 +2778,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -316, y: 52.7}
+  m_AnchoredPosition: {x: -316, y: 52.69995}
   m_SizeDelta: {x: -1340.1444, y: -450.7201}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1587410193
@@ -3083,8 +3082,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\nApetean Andrei-Razvan\nGame design \nProgramming \nUI\nArt\nSpecial
-    effects\nEating snacks"
+  m_text: "\nIdiot One\nGame design \nProgramming \nUI\nArt\nSpecial effects\nEating
+    snacks"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

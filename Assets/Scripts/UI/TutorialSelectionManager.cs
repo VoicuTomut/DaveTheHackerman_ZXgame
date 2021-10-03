@@ -64,7 +64,7 @@ public class TutorialSelectionManager : MonoBehaviour
         EntrySelection es = go.GetComponent<EntrySelection>();
         es.SetSelectionManager(this);
         es.SetId(index);
-        es.tag = tag;
+        es.label = tag;
        
     }
 
@@ -108,7 +108,7 @@ public class TutorialSelectionManager : MonoBehaviour
             selection.Deselect();
         }
         selection = entrySelection;
-        if(entrySelection.tag == "gm")
+        if(entrySelection.label == "gm")
         {
             if (gameMechanicsEntries[selection.id].image1 != null)
             {
@@ -123,7 +123,7 @@ public class TutorialSelectionManager : MonoBehaviour
             infoText1.text = gameMechanicsEntries[selection.id].info1;
             infoText2.text = gameMechanicsEntries[selection.id].info2;
         }
-        if (entrySelection.tag == "qm")
+        if (entrySelection.label == "qm")
         {
             if (quantumMechanicsEntries[selection.id].image1 != null)
             {

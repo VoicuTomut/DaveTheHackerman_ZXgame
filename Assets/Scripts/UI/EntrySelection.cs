@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class EntrySelection : MonoBehaviour, IPointerClickHandler
 {
     public int id;
-    public string tag;
+    public string label;
     private TutorialSelectionManager selectionManager;
     private CustomButton button;
     // Start is called before the first frame update

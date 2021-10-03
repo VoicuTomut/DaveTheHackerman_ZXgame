@@ -22,5 +22,9 @@ MonoBehaviour:
 
 
     Use
-    your cursor to aim. Your character rotates automatically to face the cursor.'
+    your cursor to aim. Your character rotates automatically to face the cursor.
+
+
+    Press
+    Escape or P to bring up the pause menu.'
   info2: 

@@ -31,24 +31,7 @@ public class GameMaster : MonoBehaviour
         {
             PauseUnpauseGame();
         }
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            player = FindObjectOfType<PlayerController>();
-            isTimeStopped = !isTimeStopped;
-            if (isTimeStopped)
-            {
-                //pauseMenu.SetActive(true);
-                Time.timeScale = 0;
-                if (player != null) player.enabled = false;
-            }
-            else
-            {
-                //pauseMenu.SetActive(false);
-                if (player != null) player.enabled = true;
-                Time.timeScale = 1f;
 
-            }
-        }
 
     }
     public void StartGame()
@@ -83,7 +66,6 @@ public class GameMaster : MonoBehaviour
 
     public void BackToMainMenu()
     {
-        //FindObjectOfType<CircuitMaster>().gameObject.SetActive(false);
         PauseUnpauseGame();
         StartCoroutine(LoadLevel(0));
 
