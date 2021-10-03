@@ -2,6 +2,8 @@
 (who is actually a dodo)
 
 ---If application doesn't start, run as admin---
+*DaveTheHackerman_ZXgame/BuildDaveTheHackerman/DaveTheHackerman.exe (Windows)
+
 
 ## Story 
 A long time ago, before Penguins and Polar Bears ruled the world, Dodos were one of the most advanced civilizations. Legends say they passed even the NISQ era and created an eternal, coherent qubit at room temperature.
