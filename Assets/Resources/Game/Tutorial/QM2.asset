@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f11bc7f3ba70a5c40a9b08e4edfe6684, type: 3}
+  m_Name: QM2
+  m_EditorClassIdentifier: 
+  title: 
+  image1: {fileID: 0}
+  image2: {fileID: 0}
+  info1: "Spider fusion \n\nIf two green spiders are joined (there is a wire from
+    one to the other) then you can merge those two spiders together. As you do so
+    the newly merged spider maintains all its other connections. If the spiders had
+    angles on them (called phases) then you add those angles together, remembering
+    to work modulo 2pi."
+  info2: 

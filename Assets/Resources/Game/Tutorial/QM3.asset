@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f11bc7f3ba70a5c40a9b08e4edfe6684, type: 3}
+  m_Name: QM3
+  m_EditorClassIdentifier: 
+  title: 
+  image1: {fileID: 0}
+  image2: {fileID: 0}
+  info1: "Color change rule \nThis is also called the Hadamard rule, and it describes
+    the action of the Hadamard gate (the yellow squares.) It says that we can use
+    Hadamard gates to turn a green spider into a red spider (and, because of the
+    second meta-rule, red spiders into green spiders.) "
+  info2: 

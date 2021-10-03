@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f11bc7f3ba70a5c40a9b08e4edfe6684, type: 3}
+  m_Name: QM0
+  m_EditorClassIdentifier: 
+  title: 
+  image1: {fileID: 0}
+  image2: {fileID: 0}
+  info1: "\u201CThe ZX-calculus is a graphical language that goes beyond circuit
+    diagrams. It \u2018splits the atom\u2019 of well-known quantum logic gates to
+    reveal the compositional structure inside. The calculus works by generalising
+    the ideas of Z and X operations, allowing us to break out of the circuit model
+    while maintaining soundness of reasoning. In doing so we can show properties
+    of circuits, entanglement states, and protocols, in a visually succinct but logically
+    complete manner.\u201D\n(https://zxcalculus.com/intro.html)"
+  info2: 'The ZX-calculus has two important meta-rules:
+
+    # Only connectivity
+    matters
+
+    # Everything is still true if you swap red and green
+
+
+    In this
+    game you need to exploit some of the ZX-calculus rule to optimise the Graf in
+    order to help DAVE to hack into PolarBearhIncorporate (PBI) database.
+
+'
