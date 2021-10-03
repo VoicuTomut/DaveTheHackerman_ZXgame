@@ -28,7 +28,7 @@ Dave the Dodo escaped from the PenguinSnowLab. The penguins claim that Dave quic
 ### 2021:
 Now, Help Dave hack into the PolarBearhIncorporate (PBI) database to retrieve the DNA sequence of his Dodo friend. 
  
-______________________________________________________________________________
+
 PBI firewall is almost unpenetrable; however, with his quantum computing ability, Dave has a real chance to resurrect his girlfriend, but he needs your help to optimize his circuits using to resist in front of the enemy antivirus wave.
 
 
