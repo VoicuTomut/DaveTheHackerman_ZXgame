@@ -47,8 +47,10 @@ public class CustomButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-       
-        //audioSource.PlayOneShot(onHoverClip);
+       if(!interactible)
+        {
+            audioSource.PlayOneShot(onHoverClip);
+        }
         Select();
 
     }

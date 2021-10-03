@@ -106,7 +106,7 @@ public class Level : MonoBehaviour
         environmentCamera.tag = "MainCamera";
         environmentCamera.gameObject.SetActive(true);
         player.enabled = true;
-        Time.timeScale = 0.1f;
+        Time.timeScale = 1f;
         player.SafetyBlast(percentage);
 
     }

@@ -15,8 +15,8 @@ public class GameMaster : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null) instance = this;
-        else Destroy(this.gameObject);
+        if (instance != null) Destroy(instance);
+        instance = this;
         DontDestroyOnLoad(this);
     }
     //Start is called before the first frame update
@@ -45,7 +45,7 @@ public class GameMaster : MonoBehaviour
             {
                 //pauseMenu.SetActive(false);
                 if (player != null) player.enabled = true;
-                Time.timeScale = 0.1f;
+                Time.timeScale = 1f;
 
             }
         }
@@ -53,7 +53,7 @@ public class GameMaster : MonoBehaviour
     }
     public void StartGame()
     {
-        StartCoroutine(LoadLevel(3));
+        StartCoroutine(LoadLevel(1));
     }
 
     public void OnLevelClear()
@@ -83,6 +83,7 @@ public class GameMaster : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        //FindObjectOfType<CircuitMaster>().gameObject.SetActive(false);
         PauseUnpauseGame();
         StartCoroutine(LoadLevel(0));
 
@@ -116,6 +117,9 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-
+    public void Quit()
+    {
+        Application.Quit();
+    }
 
 }

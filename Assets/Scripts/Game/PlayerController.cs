@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
             bool dead = CheckIsDead(--health);
             if (dead)
             {
-                //OnDeath.Invoke();
+                OnDeath.Invoke();
                 return;
             }
             go.transform.SetParent(transform);
