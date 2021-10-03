@@ -9,23 +9,23 @@ But all this technological advancement was lost together with the life of all th
 In the old war between Bears and Penguins, they started to research the advanced technologies of the ancient civilization because they knew that the first who would gain Quantum Advantage would dominate the Ice Berg market. 
  
 
-###1976:
+### 1976:
 Bears founded an old Dodo temple with two well-preserved dodos exemplars.
  
 
-###1994: 
+### 1994: 
 Penguins launched an attack over the archeological site. They were able to retrieve one of the dodos.
  
 
-###1998:
+### 1998:
 PenguinSnowLab(PSL) uses dodos DNA to create DAVE, the android dodo. They say that dave is an augmented version of a classical dodo, giving him quantum computing enhancements.
  
 
-###2020:
+### 2020:
 Dave the Dodo escaped from the PenguinSnowLab. The penguins claim that Dave quickly decrypted all their devices.
  
 
-###2021:
+### 2021:
 Now, Help Dave hack into the PolarBearhIncorporate (PBI) database to retrieve the DNA sequence of his Dodo friend. 
  
 
