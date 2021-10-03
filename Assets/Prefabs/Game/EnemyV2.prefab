@@ -180,7 +180,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!114 &1883224072995692339
 MonoBehaviour:
@@ -194,9 +194,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccdc5db6771e7954f9bb4102731a9061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePivot: {fileID: 6832759490222381507, guid: fe093cf665b16214ca8d76234f8a524b,
+  projectilePivot: {fileID: 1883224074093196441}
+  spawnEffects: {fileID: 6832759490222381504, guid: fe093cf665b16214ca8d76234f8a524b,
     type: 3}
-  spawnEffects: {fileID: 0}
   deathEffects: {fileID: 3535411638819409211, guid: 091ef1aad60c7eb49ad2d7fdeffd226e,
     type: 3}
   normalColor: {r: 0, g: 0, b: 0, a: 0}
@@ -206,11 +206,11 @@ MonoBehaviour:
   - {fileID: 1883224072817166651}
   - {fileID: 1883224073115362604}
   - {fileID: 1883224074126359532}
-  maxHealth: 20
-  movementSpeed: 1
-  turnSpeed: 1
-  projectilePivotRotateSpeed: 25
-  fireRate: 0.25
+  maxHealth: 30
+  movementSpeed: 4
+  turnSpeed: 4
+  projectilePivotRotateSpeed: 50
+  fireRate: 0.2
   delayBeforeStartShooting: 1.5
   isStatic: 1
   canWander: 0

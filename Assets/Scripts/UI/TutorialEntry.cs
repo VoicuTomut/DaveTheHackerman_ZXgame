@@ -6,6 +6,10 @@ using UnityEngine;
 public class TutorialEntry : ScriptableObject
 {
     public string title;
-    public Sprite image;
-    public string info;
+    public Sprite image1;
+    public Sprite image2;
+    [TextArea]
+    public string info1;
+    [TextArea]
+    public string info2;
 }

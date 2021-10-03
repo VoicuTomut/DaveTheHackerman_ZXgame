@@ -18,7 +18,6 @@ public class Level : MonoBehaviour
     private int waveIndex=0;
     private int maxWave;
     bool isCleared = false;
-    bool shooter;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +49,7 @@ public class Level : MonoBehaviour
                 {
                     player.rigidbody.velocity = Vector3.zero;
                     player.enabled = false;
-                    GameMaster.instace.OnLevelClear();
+                    GameMaster.instance.OnLevelClear();
                     isCleared = true;
                 }
             }
@@ -95,7 +94,6 @@ public class Level : MonoBehaviour
     public void StartCircuitGame()
     {
         Time.timeScale = 0;
-        shooter = false;
         environmentCamera.gameObject.SetActive(false);
         circuitCamera.tag = "MainCamera";
         circuitMaster.gameObject.SetActive(true);
@@ -105,7 +103,6 @@ public class Level : MonoBehaviour
     public void EndCircuitGame(float percentage)
     {
         circuitMaster.gameObject.SetActive(false);
-        shooter = true;
         environmentCamera.tag = "MainCamera";
         environmentCamera.gameObject.SetActive(true);
         player.enabled = true;

@@ -460,7 +460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8461804831239303798
 Transform:
   m_ObjectHideFlags: 0
@@ -578,14 +578,14 @@ MonoBehaviour:
   - {fileID: 838434209285835707}
   - {fileID: 838434209890052095}
   - {fileID: 838434209410119068}
-  maxHealth: 20
+  maxHealth: 35
   movementSpeed: 4
   turnSpeed: 4
   projectilePivotRotateSpeed: 50
   fireRate: 0.2
   delayBeforeStartShooting: 1.5
   isStatic: 0
-  canWander: 0
+  canWander: 1
   canTurn: 0
   canRotateProjectilePivot: 1
   wanderRadius: 15

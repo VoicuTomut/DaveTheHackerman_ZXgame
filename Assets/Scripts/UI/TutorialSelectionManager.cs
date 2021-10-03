@@ -7,7 +7,11 @@ using UnityEngine.UI;
 
 public class TutorialSelectionManager : MonoBehaviour
 {
-    public List<TutorialEntry> tutorialEntries;
+    public List<TutorialEntry> gameMechanicsEntries;
+    public CustomButton GM;
+    public CustomButton QM;
+    public CustomButton S;
+
     [SerializeField]
     private Image displayImage;
     [SerializeField]
@@ -16,8 +20,9 @@ public class TutorialSelectionManager : MonoBehaviour
     private GameObject button;
     [SerializeField]
     private GameObject buttonPanel;
+
     private EntrySelection selection;
-    private EntrySelection firstSelection;
+
 
     private void OnEnable()
     {
@@ -27,39 +32,43 @@ public class TutorialSelectionManager : MonoBehaviour
 
     public void Init()
     {
-        //int index = 0;
-
-        //InitItem(tutorialEntries[0], 0, true);
-
-        for (int i = 0; i < tutorialEntries.Count; i++)
+        for (int i = 0; i < gameMechanicsEntries.Count; i++)
         {
-            InitItem(tutorialEntries[i], i);
+            InitItem(gameMechanicsEntries[i], i);
         }
+        SetGM();
 
     }
 
-    void SelectEntry()
-    {
-
-    }
     void InitItem(TutorialEntry entry, int index)
     {
         GameObject go = Instantiate(button, buttonPanel.transform);
         CustomButton cb = go.GetComponent<CustomButton>();
-        cb.title = entry.title;
+        cb.text.text = entry.title;
         EntrySelection es = go.GetComponent<EntrySelection>();
         es.SetSelectionManager(this);
         es.SetId(index);
+       
     }
-    void InitItem(TutorialEntry entry, int index, bool isFirst)
+
+    public void SetGM()
     {
-        GameObject go = Instantiate(button, buttonPanel.transform);
-        CustomButton cb = go.GetComponent<CustomButton>();
-        cb.title = entry.title;
-        EntrySelection es = go.GetComponent<EntrySelection>();
-        es.SetSelectionManager(this);
-        es.SetId(index);
-        firstSelection = es;
+        QM.SetAsSelection(false);
+        S.SetAsSelection(false);
+        GM.SetAsSelection(true);
+    }
+    public void SetQM()
+    {
+        GM.SetAsSelection(false);
+        S.SetAsSelection(false);
+        QM.SetAsSelection(true);
+    }
+
+    public void SetS()
+    {
+        QM.SetAsSelection(false);
+        GM.SetAsSelection(false);
+        S.SetAsSelection(true);
     }
 
     public void SetSelection(EntrySelection entrySelection)
@@ -69,7 +78,7 @@ public class TutorialSelectionManager : MonoBehaviour
             selection.Deselect();
         }
         selection = entrySelection;
-        displayImage.sprite = tutorialEntries[selection.id].image;
-        infoText.text = tutorialEntries[selection.id].info;
+        displayImage.sprite = gameMechanicsEntries[selection.id].image1;
+        infoText.text = gameMechanicsEntries[selection.id].info1;
     }
 }

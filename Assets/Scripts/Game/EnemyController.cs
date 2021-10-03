@@ -145,8 +145,12 @@ public class EnemyController : MonoBehaviour
             targetDirection += directionOffset;
         }
         
+        if(Vector3.Distance(transform.position, player.transform.position) > 5)
+        {
+            Debug.DrawLine(transform.position, player.transform.position, Color.red);
+            rigidbody.velocity = movementSpeed * targetDirection;
+        }
 
-        rigidbody.velocity = movementSpeed * targetDirection;
     }
 
     private void HandleRotation()

@@ -155,6 +155,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5074884484041393433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolObjects: []
-  poolSize: 150
+  poolSize: 200
   prefab: {fileID: 2253605430106049239, guid: 4314a7ff511666241a4020edbeb2bd02, type: 3}
 --- !u!82 &586982374644055027
 AudioSource:

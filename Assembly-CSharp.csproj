@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\UI\CustomButton.cs" />
     <Compile Include="Assets\Scripts\UI\EntrySelection.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\UI\TabSelectionManager.cs" />
     <Compile Include="Assets\Scripts\UI\TutorialEntry.cs" />
     <Compile Include="Assets\Scripts\UI\TutorialSelectionManager.cs" />
   </ItemGroup>

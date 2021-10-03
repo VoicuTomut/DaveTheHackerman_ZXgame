@@ -355,8 +355,21 @@ public class VisualCircuit : MonoBehaviour
     }
     public float NumberConstrain(float number)
     {
-        int int_part = (int)(number % 2);
-        return number / 2.0f - (int)(number / 2) + int_part;
+        if (number * number > 4)
+        {
+            while (number > 2)
+            {
+                number = number - 2;
+            }
+
+            while (number < -2)
+            {
+                number = number + 2;
+            }
+
+            return number;
+        }
+        else return number;
 
 
     }

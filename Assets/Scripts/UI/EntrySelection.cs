@@ -7,19 +7,16 @@ using UnityEngine.EventSystems;
 public class EntrySelection : MonoBehaviour, IPointerClickHandler
 {
     public int id;
+
     private TutorialSelectionManager selectionManager;
     private CustomButton button;
     // Start is called before the first frame update
     void Start()
     {
         button = GetComponent<CustomButton>();
+        if (id == 0) Select();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void SetSelectionManager(TutorialSelectionManager manager)
     {
@@ -33,7 +30,7 @@ public class EntrySelection : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         button.SetAsSelection(true);
-        selectionManager.SetSelection(this);
+         selectionManager.SetSelection(this);
     }
 
     public void Select()

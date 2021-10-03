@@ -124,11 +124,7 @@ public class PlayerController : MonoBehaviour
             {
                 collider.gameObject.SetActive(false);
             }
-            if(collider.GetComponent<EnemyController>())
-            {
-                Rigidbody rb = collider.GetComponent<Rigidbody>();
-                rb.AddForce((transform.position - rb.position ) * 500);
-            }
+
         }
         if (percentage>0.65f)
         {
@@ -147,7 +143,7 @@ public class PlayerController : MonoBehaviour
             bool dead = CheckIsDead(--health);
             if (dead)
             {
-                //OnDeath.Invoke();
+                OnDeath.Invoke();
                 return;
             }
             go.transform.SetParent(transform);
@@ -173,14 +169,10 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    private IEnumerator KillPlayer()
-    {
-        yield return new WaitForSeconds(1f);
-        gameObject.SetActive(false);
-    }
+
     private void HandleMovement()
     {
-        //transform.position += moveDirection;
+
         rigidbody.velocity = moveVelocity;
     }
 
@@ -188,7 +180,7 @@ public class PlayerController : MonoBehaviour
     {
         movementX = Input.GetAxis("Horizontal");
         movementY = Input.GetAxis("Vertical");
-        //cameraVelocity = Vector3.zero;
+     
         moveDirection = new Vector3(movementX, 0, movementY);
         moveDirection.Normalize();
         moveVelocity = new Vector3(moveDirection.x * movementSpeed,0, moveDirection.z * movementSpeed);

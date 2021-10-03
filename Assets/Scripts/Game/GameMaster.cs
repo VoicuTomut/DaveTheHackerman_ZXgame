@@ -11,11 +11,12 @@ public class GameMaster : MonoBehaviour
     private PlayerController player;
     private bool isTimeStopped = false;
 
-    public static GameMaster instace;
+    public static GameMaster instance;
 
     private void Awake()
     {
-        instace = this;
+        if (instance == null) instance = this;
+        else Destroy(this.gameObject);
         DontDestroyOnLoad(this);
     }
     //Start is called before the first frame update
@@ -86,6 +87,12 @@ public class GameMaster : MonoBehaviour
         StartCoroutine(LoadLevel(0));
 
     }
+    public void ResetToMainMenu()
+    {
+        StartCoroutine(LoadLevel(0));
+
+    }
+
 
     public void PauseUnpauseGame()
     {

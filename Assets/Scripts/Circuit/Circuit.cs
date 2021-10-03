@@ -162,7 +162,7 @@ public class Circuit
         {
 
             int idtake = i;
-
+            float value = UnityEngine.Random.insideUnitCircle.x + UnityEngine.Random.insideUnitCircle.x;
             if (nr_pi >= 0)
             {
                 //asta ar trebui sa se intample cu o oarecare probabilitate
@@ -180,7 +180,7 @@ public class Circuit
                 }
                 else
                 {
-                    Element spider = new Element(idtake, ElementType.ZR, 3, 1);
+                    Element spider = new Element(idtake, ElementType.ZR, value, 1);
                     int[] sNeighbours = new int[2] { i - 1, nr };
                     circuit = AddNewElement(circuit, spider, sNeighbours);
                     circuit = RemoveEdge(circuit, i - 1, nr);
@@ -189,7 +189,7 @@ public class Circuit
             }
             else
             {
-                Element spider = new Element(idtake, ElementType.ZR, 3, 1);
+                Element spider = new Element(idtake, ElementType.ZR, value, 1);
                 int[] sNeighbours = new int[2] { i - 1, nr };
                 circuit = AddNewElement(circuit, spider, sNeighbours);
                 circuit = RemoveEdge(circuit, i - 1, nr);
@@ -753,13 +753,13 @@ public class Circuit
 
         double nr_red = nr * red;
 
-
+       
         for (int i = 2; i < nr; i++)
         {
-
+            float value = UnityEngine.Random.insideUnitCircle.x + UnityEngine.Random.insideUnitCircle.x;
             int idtake = i;//GetNewId(circuit);
 
-            Element spider = new Element(idtake, ElementType.ZG, i, 1);
+            Element spider = new Element(idtake, ElementType.ZG, value, 1);
             int[] sNeighbours = new int[2] { i - 1, nr };
             circuit = AddNewElement(circuit, spider, sNeighbours);
             circuit = RemoveEdge(circuit, i - 1, nr);
@@ -810,7 +810,7 @@ public class Circuit
         {
 
             int idtake = i;
-
+            float value = UnityEngine.Random.insideUnitCircle.x + UnityEngine.Random.insideUnitCircle.x;
             if (nr_pi >= 0)
             {
                 //asta ar trebui sa se intample cu o oarecare probabilitate
@@ -828,7 +828,7 @@ public class Circuit
                 }
                 else
                 {
-                    Element spider = new Element(idtake, ElementType.ZR, 3, 1);
+                    Element spider = new Element(idtake, ElementType.ZR, value, 1);
                     int[] sNeighbours = new int[2] { i - 1, nr };
                     circuit = AddNewElement(circuit, spider, sNeighbours);
                     circuit = RemoveEdge(circuit, i - 1, nr);
@@ -837,7 +837,7 @@ public class Circuit
             }
             else
             {
-                Element spider = new Element(idtake, ElementType.ZR, 3, 1);
+                Element spider = new Element(idtake, ElementType.ZR, value, 1);
                 int[] sNeighbours = new int[2] { i - 1, nr };
                 circuit = AddNewElement(circuit, spider, sNeighbours);
                 circuit = RemoveEdge(circuit, i - 1, nr);

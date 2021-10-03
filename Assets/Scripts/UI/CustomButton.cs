@@ -17,6 +17,7 @@ public class CustomButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     public int normalFontSize;
     public int highlightFontSize;
     public string title;
+    public TextMeshProUGUI text;
     private bool isSelected;
     public Color normalColor;
     public Color highlightColor;
@@ -24,18 +25,11 @@ public class CustomButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     public UnityEvent onClick;
     private AudioSource audioSource;
     private Image background;
-    private TextMeshProUGUI text;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
-        background = GetComponent<Image>();
-        text = GetComponentInChildren<TextMeshProUGUI>();
-        text.fontSize = normalFontSize;
-        text.color = normalColor;
-        if(decoration != null) decoration.enabled = false;
-        if (title != string.Empty) text.text = title;
+        Init();
     }
 
 
@@ -75,16 +69,18 @@ public class CustomButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         }
 
     }
-    private void Deselect()
+    public void Deselect()
     {
+        if (text == null) Init();
         decoration.enabled = false;
         text.fontSize = normalFontSize;
         text.color = normalColor;
 
     }
 
-    private void Select()
+    public void Select()
     {
+        if (text == null) Init();
         text.fontSize = highlightFontSize;
         text.color = highlightColor;
         decoration.enabled = true;
@@ -95,5 +91,13 @@ public class CustomButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         isSelected = selected;
         if (selected) { Select(); } else Deselect();
     }
-   
+   void Init()
+    {
+        audioSource = GetComponent<AudioSource>();
+        background = GetComponent<Image>();
+        text = GetComponentInChildren<TextMeshProUGUI>();
+        text.fontSize = normalFontSize;
+        text.color = normalColor;
+        if (decoration != null) decoration.enabled = false;
+    }
 }

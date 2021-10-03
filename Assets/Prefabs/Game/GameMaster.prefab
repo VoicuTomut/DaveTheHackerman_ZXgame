@@ -134,11 +134,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d85fd1aa7c5a814693bada007946726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactible: 0
   decoration: {fileID: 797932097090950291}
   normalBackground: {fileID: 21300000, guid: 8dd2e6764db1aef42bce7e2f069d3e81, type: 3}
   hoveredBackground: {fileID: 21300000, guid: c970f0a4f56ccf846b52f4c7b6912231, type: 3}
   normalFontSize: 36
   highlightFontSize: 48
+  title: 
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   highlightColor: {r: 1, g: 1, b: 1, a: 1}
   onHoverClip: {fileID: 8300000, guid: 1d2ca99ae7959e44e894b1c3ff3f593b, type: 3}
@@ -445,11 +447,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d85fd1aa7c5a814693bada007946726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactible: 0
   decoration: {fileID: 797932096080975384}
   normalBackground: {fileID: 21300000, guid: 8dd2e6764db1aef42bce7e2f069d3e81, type: 3}
   hoveredBackground: {fileID: 21300000, guid: c970f0a4f56ccf846b52f4c7b6912231, type: 3}
   normalFontSize: 36
   highlightFontSize: 48
+  title: 
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   highlightColor: {r: 1, g: 1, b: 1, a: 1}
   onHoverClip: {fileID: 8300000, guid: 1d2ca99ae7959e44e894b1c3ff3f593b, type: 3}
@@ -1123,7 +1127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &797932097322990560
 Transform:
   m_ObjectHideFlags: 0
@@ -1187,7 +1191,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionScreenObject: {fileID: 7700806735528639294}
   transitionScreen: {fileID: 7700806735528639264}
-  mainMenu: {fileID: 0}
   pauseMenu: {fileID: 797932097322990561}
 --- !u!1 &7700806733881585239
 GameObject:
