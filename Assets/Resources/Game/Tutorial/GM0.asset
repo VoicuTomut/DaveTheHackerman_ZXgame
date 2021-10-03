@@ -15,7 +15,12 @@ MonoBehaviour:
   title: Controls
   image1: {fileID: 21300000, guid: ae08c5a7e889e284c8a96a6502c2db93, type: 3}
   image2: {fileID: 0}
-  info1: 'Blah Blah
+  info1: 'Use WASD or directional arrows to move.
 
-'
+
+    Click or hold LMB to shoot.
+
+
+    Use
+    your cursor to aim. Your character rotates automatically to face the cursor.'
   info2: 

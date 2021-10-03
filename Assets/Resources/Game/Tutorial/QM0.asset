@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f11bc7f3ba70a5c40a9b08e4edfe6684, type: 3}
   m_Name: QM0
   m_EditorClassIdentifier: 
-  title: 
+  title: ZX calculus
   image1: {fileID: 0}
   image2: {fileID: 0}
   info1: "\u201CThe ZX-calculus is a graphical language that goes beyond circuit
@@ -31,7 +31,7 @@ MonoBehaviour:
 
 
     In this
-    game you need to exploit some of the ZX-calculus rule to optimise the Graf in
-    order to help DAVE to hack into PolarBearhIncorporate (PBI) database.
+    game you have to use some of the ZX-calculus rules to optimize the Graph in order
+    to help DAVE hack into the PolarBearIncorporate (PBI) database.
 
 '

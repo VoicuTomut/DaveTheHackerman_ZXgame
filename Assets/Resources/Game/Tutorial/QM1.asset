@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f11bc7f3ba70a5c40a9b08e4edfe6684, type: 3}
   m_Name: QM1
   m_EditorClassIdentifier: 
-  title: 
-  image1: {fileID: 0}
-  image2: {fileID: 0}
-  info1: "Pi computation rule \n\nIf we have a red spider with value pi and another
-    green spider with any value on it, we can push the red spider thru the green
-    one with the cost of flipping the sign of the spider with a minute sign in front
-    of the alpha value."
-  info2: 
+  title: Pi Computation Rule
+  image1: {fileID: 21300000, guid: 761369f8882655f43805540898a3bc47, type: 3}
+  image2: {fileID: 21300000, guid: 9bd32e0c4a91b4f4db7502e94ec5664c, type: 3}
+  info1: If we have a spider with value pi and a neighbour spider with a non-zero
+    value on it and a different color, we can push the first spider through the neighbour
+    spider at the cost of flipping the sign of the spider to a minus sign in front
+    of the alpha value.
+  info2: To push a spider in game, click and drag it over a neighbour of a different
+    color.

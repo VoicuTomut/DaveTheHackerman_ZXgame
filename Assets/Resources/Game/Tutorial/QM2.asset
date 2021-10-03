@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f11bc7f3ba70a5c40a9b08e4edfe6684, type: 3}
   m_Name: QM2
   m_EditorClassIdentifier: 
-  title: 
-  image1: {fileID: 0}
-  image2: {fileID: 0}
-  info1: "Spider fusion \n\nIf two green spiders are joined (there is a wire from
-    one to the other) then you can merge those two spiders together. As you do so
-    the newly merged spider maintains all its other connections. If the spiders had
-    angles on them (called phases) then you add those angles together, remembering
-    to work modulo 2pi."
-  info2: 
+  title: Spider Fusion
+  image1: {fileID: 21300000, guid: 5cf665de3d6a942bea84d1bcdb8d83c5, type: 3}
+  image2: {fileID: 21300000, guid: d42a0179aafb14a279d063c34297877b, type: 3}
+  info1: 'If two spiders of the same color are connected, you can fuse them together.
+
+
+    Fusing
+    spiders keeps all their connections and adds their values (phases).
+
+
+    Remember
+    that the value in each spider represents a fraction of Pi in range [0-2]'
+  info2: To fuse spiders, click and drag them on top of a neighbour of the same color.

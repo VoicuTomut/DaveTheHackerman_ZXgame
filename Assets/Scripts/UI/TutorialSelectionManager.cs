@@ -19,9 +19,13 @@ public class TutorialSelectionManager : MonoBehaviour
     public Sprite defaultImage;
 
     [SerializeField]
-    private Image displayImage;
+    private Image displayImage1;
     [SerializeField]
-    private TextMeshProUGUI infoText;
+    private TextMeshProUGUI infoText1;
+    [SerializeField]
+    private Image displayImage2;
+    [SerializeField]
+    private TextMeshProUGUI infoText2;
     [SerializeField]
     private GameObject button;
     [SerializeField]
@@ -46,7 +50,7 @@ public class TutorialSelectionManager : MonoBehaviour
         }
         for (int i = 0; i < quantumMechanicsEntries.Count; i++)
         {
-            InitItem(gameMechanicsEntries[i], qmContent.transform, i, "qm");
+            InitItem(quantumMechanicsEntries[i], qmContent.transform, i, "qm");
         }
         SetGM();
 
@@ -108,29 +112,32 @@ public class TutorialSelectionManager : MonoBehaviour
         {
             if (gameMechanicsEntries[selection.id].image1 != null)
             {
-                displayImage.sprite = gameMechanicsEntries[selection.id].image1;
+                displayImage1.sprite = gameMechanicsEntries[selection.id].image1;
             }
-            else displayImage.sprite = defaultImage;
+            else displayImage1.sprite = defaultImage;
             if (gameMechanicsEntries[selection.id].image2 != null)
             {
-                displayImage.sprite = gameMechanicsEntries[selection.id].image1;
+                displayImage2.sprite = gameMechanicsEntries[selection.id].image2;
             }
-            else displayImage.sprite = defaultImage;
-            infoText.text = gameMechanicsEntries[selection.id].info1;
+            else displayImage2.sprite = defaultImage;
+            infoText1.text = gameMechanicsEntries[selection.id].info1;
+            infoText2.text = gameMechanicsEntries[selection.id].info2;
         }
         if (entrySelection.tag == "qm")
         {
             if (quantumMechanicsEntries[selection.id].image1 != null)
             {
-                displayImage.sprite = quantumMechanicsEntries[selection.id].image1;
+                displayImage1.sprite = quantumMechanicsEntries[selection.id].image1;
             }
-            else displayImage.sprite = defaultImage;
+            else displayImage1.sprite = defaultImage;
             if (quantumMechanicsEntries[selection.id].image2 != null)
             {
-                displayImage.sprite = quantumMechanicsEntries[selection.id].image1;
+                displayImage2.sprite = quantumMechanicsEntries[selection.id].image2;
             }
-            else displayImage.sprite = defaultImage;
-            infoText.text = gameMechanicsEntries[selection.id].info1;
+            else displayImage2.sprite = defaultImage;
+            infoText1.text = quantumMechanicsEntries[selection.id].info1;
+
+            infoText2.text = quantumMechanicsEntries[selection.id].info2;
         }
 
     }

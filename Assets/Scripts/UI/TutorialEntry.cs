@@ -8,8 +8,8 @@ public class TutorialEntry : ScriptableObject
     public string title;
     public Sprite image1;
     public Sprite image2;
-    [TextArea]
+    [TextArea(15,20)]
     public string info1;
-    [TextArea]
+    [TextArea(15, 20)]
     public string info2;
 }

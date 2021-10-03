@@ -45,7 +45,7 @@ public class GameMaster : MonoBehaviour
             {
                 //pauseMenu.SetActive(false);
                 if (player != null) player.enabled = true;
-                Time.timeScale = 1;
+                Time.timeScale = 0.1f;
 
             }
         }
@@ -53,7 +53,7 @@ public class GameMaster : MonoBehaviour
     }
     public void StartGame()
     {
-        StartCoroutine(LoadLevel(1));
+        StartCoroutine(LoadLevel(3));
     }
 
     public void OnLevelClear()

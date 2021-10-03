@@ -12,8 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f11bc7f3ba70a5c40a9b08e4edfe6684, type: 3}
   m_Name: GM1
   m_EditorClassIdentifier: 
-  title: Second
-  image1: {fileID: 0}
+  title: Enemies
+  image1: {fileID: 21300000, guid: 0d51b1ce21b4fdd4d887ef4e850fa8b5, type: 3}
   image2: {fileID: 0}
-  info1: 
-  info2: 
+  info1: 'There are different types of enemies in this game.
+
+
+    Enemies take damage
+    when shot. Shoot an enemy enough times to destroy it.
+
+
+    Some levels have
+    several waves of enemies. Destroy all waves to clear the level.'
+  info2: 'Some enemies can shoot multiple bullets at once as well as different types
+    of bullets.
+
+
+    Red bullets - you can shoot red bullets with your own to destroy
+    them.
+
+
+    Purple bullets - purple bullets cannot be destroyed even if you shoot
+    them.'

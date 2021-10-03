@@ -12,8 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f11bc7f3ba70a5c40a9b08e4edfe6684, type: 3}
   m_Name: GM2
   m_EditorClassIdentifier: 
-  title: Third
-  image1: {fileID: 0}
+  title: Taking damage 1
+  image1: {fileID: 21300000, guid: d52ae06562b32ba4c9e8acb856cd210f, type: 3}
   image2: {fileID: 0}
-  info1: 
-  info2: 
+  info1: 'When your character gets hit by a bullet, the Circuit Optimization screen
+    appears.
+
+
+    Try and optimize the circuit as best as possible according to
+    the rules in the "Quantum Mechanics" tab.
+
+'
+  info2: When you are done optimizing, click the "Check out" button in the upper
+    right hand corner to return to the game.
