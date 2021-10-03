@@ -107,7 +107,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 116
@@ -124,14 +124,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363e8f4523222c44b8305b3bbe32213e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 3
+  hpOne: {fileID: 5380945435824485463}
+  hpTwo: {fileID: 5380945435668730175}
+  rigidbody: {fileID: 0}
   playerObject: {fileID: 4748806053026066480}
   cameraTransform: {fileID: 0}
-  cameraTarget: {fileID: 0}
+  camera: {fileID: 0}
+  cameraTarget: {fileID: 5074884483210261183}
   projectileSpawn: {fileID: 5074884482392681099}
   audioSource: {fileID: 0}
+  blueBlastEffects: {fileID: 3219126857582423052, guid: e6325269f3579be4a9e41f7a9a08b798,
+    type: 3}
+  redBlastEffects: {fileID: 9152860384763331417, guid: 5051ad17d9a920f4a872ba762b806f9b,
+    type: 3}
   fireRate: 0.1
   movementSpeed: 10
   smoothing: 0.5
+  OnCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: StartCircuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5074884484041393433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +527,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 398c779a4993e5f44bd06983321b7963, type: 3}
+--- !u!1 &5380945435668730175 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 398c779a4993e5f44bd06983321b7963,
+    type: 3}
+  m_PrefabInstance: {fileID: 5074884482990238830}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5074884483147024646
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -619,3 +648,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6714f46b8c977c448928790cb076fe3d, type: 3}
+--- !u!1 &5380945435824485463 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6714f46b8c977c448928790cb076fe3d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5074884483147024646}
+  m_PrefabAsset: {fileID: 0}

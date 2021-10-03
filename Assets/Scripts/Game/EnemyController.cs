@@ -98,9 +98,7 @@ public class EnemyController : MonoBehaviour
 
     private void HandleWandering()
     {
-        RaycastHit hit;
-        Debug.DrawLine(transform.position, transform.position - targetDestination, Color.red);
-        Physics.Raycast(transform.position, targetDestination, out hit, 3f);
+        Physics.Raycast(transform.position, targetDestination, out RaycastHit hit, 3f);
         if (hit.collider != null)
         {
             if (hit.collider.CompareTag("WallCollider"))
@@ -198,7 +196,7 @@ public class EnemyController : MonoBehaviour
             GameObject go = Instantiate(deathEffects);
             go.transform.position = transform.position;
             DeathEffects de = go.GetComponent<DeathEffects>();
-            de.PlayDeathEffects();
+            de.PlayEffects();
             gameObject.SetActive(false);
             return;
         }
@@ -230,9 +228,9 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator Spawn(GameObject g)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         meshRenderer.enabled = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         Destroy(g);
     }
 }

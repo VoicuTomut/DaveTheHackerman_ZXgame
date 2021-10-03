@@ -30,6 +30,11 @@ public class Circuit
         this.Elements = Elements;
         this.AdjancenceMatrix = AdjancenceMatrix;
     }
+    public Circuit()
+    {
+        Elements = new List<Element>();
+        AdjancenceMatrix = new int[1,1];
+    }
 
     /// <summary>
     /// Adds the value of two elements together
@@ -119,24 +124,227 @@ public class Circuit
 
     }
 
-
-    /// <summary>
-    /// Push the second node thru first one 
-    /// </summary>
-    public Circuit PushElements(Circuit circuit, int id1, int id2)
+    public Circuit Interact(Circuit circuit, int id1, int id2)
     {
         Element e1 = circuit.Elements.Single(x => x.id == id1);
         Element e2 = circuit.Elements.Single(x => x.id == id2);
 
+        if(e1.elementType == e2.elementType)
+        {
+            circuit=FuseElements(circuit,id1,id2);
+        }
+        else
+        {
+            circuit = PushElements(circuit, id1, id2);
+        }
+
+        return circuit;
+    }
+    public Circuit OneLineCircuitV3(int nr, int nr_pi, int nr_read)
+    {
+
+        List<Element> elements = new List<Element>();
+        int[,] adjacencyMatrix;
+
+        Element ei = new Element(1, ElementType.Input, 0, 1);
+        Element eo = new Element(nr, ElementType.Output, 1, 1);
+
+        elements.Add(ei);
+        elements.Add(eo);
+        adjacencyMatrix = new int[3, 3] { { 0, 1, nr },
+                                          { 1, 0, 1 },
+                                          { nr, 1, 0 } };
+        Circuit circuit = new Circuit(elements, adjacencyMatrix);
+
+
+
+        for (int i = 2; i < nr; i++)
+        {
+
+            int idtake = i;
+
+            if (nr_pi >= 0)
+            {
+                //asta ar trebui sa se intample cu o oarecare probabilitate
+
+                int r = UnityEngine.Random.Range(0, 2);
+                if (r > 0)
+                {
+                    nr_pi = nr_pi - 1;
+
+
+                    Element spider = new Element(idtake, ElementType.ZG, 1, 1);
+                    int[] sNeighbours = new int[2] { i - 1, nr };
+                    circuit = AddNewElement(circuit, spider, sNeighbours);
+                    circuit = RemoveEdge(circuit, i - 1, nr);
+                }
+                else
+                {
+                    Element spider = new Element(idtake, ElementType.ZR, 3, 1);
+                    int[] sNeighbours = new int[2] { i - 1, nr };
+                    circuit = AddNewElement(circuit, spider, sNeighbours);
+                    circuit = RemoveEdge(circuit, i - 1, nr);
+                }
+
+            }
+            else
+            {
+                Element spider = new Element(idtake, ElementType.ZR, 3, 1);
+                int[] sNeighbours = new int[2] { i - 1, nr };
+                circuit = AddNewElement(circuit, spider, sNeighbours);
+                circuit = RemoveEdge(circuit, i - 1, nr);
+            }
+
+
+        }
+
+        for (int i = 2; i < nr; i++)
+        {
+            if (nr_read > 0)
+            {
+                if (UnityEngine.Random.Range(0, 2) > 0)
+                {
+                    //asta ar trebui s a se intample cu o oarecare probabilitate
+                    circuit = ChangeType(circuit, i);
+                    nr_read--;
+                }
+
+            }
+        }
+
+
+        return circuit;
+
+    }
+
+    public Circuit TwoLineCircuitv1(int nr, int nr_edges, int nr_red)
+    {
+
+        List<Element> elements = new List<Element>();
+        int[,] adjacencyMatrix;
+
+        Element ei1 = new Element(1, ElementType.Input, 0, 1);
+        Element ei2 = new Element(nr + 1, ElementType.Input, 0, 2);
+
+        Element eo1 = new Element(nr, ElementType.Output, 1, 1);
+        Element eo2 = new Element(nr * 2, ElementType.Output, 1, 2);
+
+        elements.Add(ei1);
+        elements.Add(ei2);
+        elements.Add(eo1);
+        elements.Add(eo2);
+
+        adjacencyMatrix = new int[5, 5] { { 0,    1, nr+1, nr, nr*2 },
+                                          { 1,    0, 0,    1 , 0 },
+                                          { nr+1, 0, 0 ,   0,  1 } ,
+                                          { nr,   1, 0 ,   0,  0},
+                                          { nr*2, 0, 1 ,   0,  0}};
+
+        Circuit circuit = new Circuit(elements, adjacencyMatrix);
+
+
+
+        for (int i = 2; i < 2 * nr; i++)
+        {
+
+
+            float value = UnityEngine.Random.insideUnitCircle.x + UnityEngine.Random.insideUnitCircle.x;
+            if (i > nr + 1)
+            {
+                
+                Element spider = new Element(i, ElementType.ZG, value, 2);
+                int[] sNeighbours = new int[2] { i - 1, nr * 2 };
+                circuit = AddNewElement(circuit, spider, sNeighbours);
+                circuit = RemoveEdge(circuit, i - 1, nr * 2);
+            }
+            if (i < nr)
+            {
+               
+                Element spider = new Element(i, ElementType.ZG, value, 1);
+                int[] sNeighbours = new int[2] { i - 1, nr };
+                circuit = AddNewElement(circuit, spider, sNeighbours);
+                circuit = RemoveEdge(circuit, i - 1, nr);
+            }
+
+        }
+
+        //Si aici ar trebui randomizat un pic 
+        for (int i = 2; i < 2 * nr - 2; i++)
+        {
+            int r = UnityEngine.Random.Range(0, 100);
+            if ((r > 50) && (nr_edges > 0))
+            {
+                nr_edges--;
+                int id1 = i;
+                circuit = AddEdge(circuit, id1, nr + id1);
+            }
+
+        }
+
+        int nr_red_2 = nr_red;
+
+        for (int i = 2; i < nr * 2; i++)
+        {
+            if (nr_red > 0)
+            {    
+                if (UnityEngine.Random.Range(0, 2) > 0)
+                {
+                    //asta ar trebui s a se intample cu o oarecare probabilitate
+                    circuit = ChangeType(circuit, i);
+                    nr_red--;
+                }
+
+            }
+
+
+        }
+
+        nr_red = nr_red_2 - 2;
+        for (int i = nr; i < nr * 2; i++)
+        {
+            if (nr_red > 0)
+            {
+                if (UnityEngine.Random.Range(0, 2) > 0)
+                {
+                    //asta ar trebui s a se intample cu o oarecare probabilitate
+                    circuit = ChangeType(circuit, i);
+                    nr_red--;
+                }
+
+            }
+
+
+        }
+        return circuit;
+    }
+
+        /// <summary>
+        /// Push the second node thru first one 
+        /// </summary>
+        public Circuit PushElements(Circuit circuit, int id1, int id2)
+    {
+        Element e1 = circuit.Elements.Single(x => x.id == id1);
+        Element e2 = circuit.Elements.Single(x => x.id == id2);
+
+        List<int> e22Neighbours = GetNeighbours(circuit, id2);
+
+        bool neighbourFlag = false;
+        foreach (var item in e22Neighbours)
+        {
+            if (item== e1.id)
+                {
+                neighbourFlag = true;
+                }
+        }
 
         bool piFlag = false;
-        if (e1.value == 1)
+        if ((e1.value == 1)|| (e1.value == 2))
         {
             piFlag = true;
         }
         else
         {
-            if (e2.value == 1)
+            if ((e2.value == 1)|| (e2.value == 2))
             {
                 piFlag = true;
                 Element sw = e2;
@@ -146,14 +354,18 @@ public class Circuit
         }
 
         bool typeFlag = false;
-        if ((e1.elementType != e2.elementType) && (e1.elementType == ElementType.ZR || e1.elementType == ElementType.ZG) && (e2.elementType == ElementType.ZR || e2.elementType == ElementType.ZG))
+        if ((e1.elementType != e2.elementType) && (e1.elementType == ElementType.ZR || e1.elementType == ElementType.ZG) && (e2.elementType == ElementType.ZR || e2.elementType == ElementType.ZG)&& neighbourFlag)
         {
             typeFlag = true;
         }
 
         if (piFlag && typeFlag)
         {
-            e2.value = -e2.value;
+            if (e1.value == 1)
+            {
+                e2.value = -e2.value;
+            }
+            
 
             var e2Neighbours = GetNeighbours(circuit, e2.id);
             var e1Neighbours = GetNeighbours(circuit, e1.id);
@@ -524,7 +736,7 @@ public class Circuit
     /// <summary>
     /// 1 line cicuits that can be reduced only to green spiders
     /// </summary>
-    public Circuit Line_circuit_01(int nr, double red)
+    public Circuit OneLineCircuitV1(int nr, double red)
     {
         List<Element> elements = new List<Element>();
         int[,] adjacencyMatrix;
@@ -576,7 +788,7 @@ public class Circuit
     /// <summary>
     /// 1 lie circuits + pi 
     /// </summary>
-    public Circuit Line_circuit_02(int nr, double pis)
+    public Circuit OneLineCircuitV2(int nr, double pis)
     {
 
         List<Element> elements = new List<Element>();
@@ -606,7 +818,7 @@ public class Circuit
                 int r = UnityEngine.Random.Range(0, 2);
                 if (r > 0)
                 {
-                    nr_pi = nr_pi - 1;
+                    nr_pi--;
 
 
                     Element spider = new Element(idtake, ElementType.ZG, 1, 1);
@@ -639,7 +851,7 @@ public class Circuit
     }
 
 
-    public Circuit twoQubitCircuit_01(int nr, int nr_edges)
+    public Circuit TreeLineCircuitv1(int nr, int nr_edges)
     {
 
         List<Element> elements = new List<Element>();
@@ -647,57 +859,167 @@ public class Circuit
 
         Element ei1 = new Element(1, ElementType.Input, 0, 1);
         Element ei2 = new Element(nr + 1, ElementType.Input, 0, 2);
+        Element ei3 = new Element(2*nr + 1, ElementType.Input, 0, 3);
+
 
         Element eo1 = new Element(nr, ElementType.Output, 1, 1);
         Element eo2 = new Element(nr * 2, ElementType.Output, 1, 2);
+        Element eo3 = new Element(3*nr , ElementType.Output, 0, 3);
 
         elements.Add(ei1);
         elements.Add(ei2);
+        elements.Add(ei3);
         elements.Add(eo1);
         elements.Add(eo2);
+        elements.Add(eo3);
 
-        adjacencyMatrix = new int[5, 5] { { 0,    1, nr+1, nr, nr*2 },
-                                          { 1,    0, 0,    1 , 0 },
-                                          { nr+1, 0, 0 ,   0,  1 } ,
-                                          { nr,   1, 0 ,   0,  0},
-                                          { nr*2, 0, 1 ,   0,  0}};
+        adjacencyMatrix = new int[7, 7] { { 0,     1, nr+1, nr, nr*2,nr*2+1,nr*3 },
+                                          { 1,     0, 0,    1 , 0,   0,   0 },
+                                          { nr+1,  0, 0 ,   0,  1,   0,   0} ,
+                                          { nr,    1, 0 ,   0,  0,   0,   0},
+                                          { nr*2,  0, 1 ,   0,  0,   0,   0},
+                                          { nr*2+1,0, 0 ,   0,  0,   0,   1},
+                                          { nr*3,  0, 0 ,   0,  0,   1,   0},
+        };
 
         Circuit circuit = new Circuit(elements, adjacencyMatrix);
 
 
 
-        for (int i = 2; i < 2 * nr; i++)
+        for (int i = 2; i < 3 * nr; i++)
         {
-            if (i > nr + 1)
-            {
-                float value = 0.01f;
-                Element spider = new Element(i, ElementType.ZG, value, 2);
-                int[] sNeighbours = new int[2] { i - 1, nr * 2 };
-                circuit = AddNewElement(circuit, spider, sNeighbours);
-                circuit = RemoveEdge(circuit, i - 1, nr * 2);
-            }
+
+            float value = UnityEngine.Random.insideUnitCircle.x + UnityEngine.Random.insideUnitCircle.x;
             if (i < nr)
             {
-                float value = 0.01f;
+
                 Element spider = new Element(i, ElementType.ZG, value, 1);
                 int[] sNeighbours = new int[2] { i - 1, nr };
                 circuit = AddNewElement(circuit, spider, sNeighbours);
                 circuit = RemoveEdge(circuit, i - 1, nr);
             }
-
+            else if ((i > nr+1 ) && (i < 2 * nr))
+            {
+                
+                Element spider = new Element(i, ElementType.ZG, value, 2);
+                int[] sNeighbours = new int[2] { i - 1, nr * 2 };
+                circuit = AddNewElement(circuit, spider, sNeighbours);
+                circuit = RemoveEdge(circuit, i - 1, nr * 2);
+            }
+            else if((i>2*nr+1)&& (i < 3 * nr))
+            {
+                
+                Element spider = new Element(i, ElementType.ZG, value, 3);
+                int[] sNeighbours = new int[2] { i - 1, nr*3 };
+                circuit = AddNewElement(circuit, spider, sNeighbours);
+                circuit = RemoveEdge(circuit, i - 1, nr*3);
+            }
         }
 
-        //Si aici ar trebui randomizat un pic 
-        for (int i = 2; i < 2 * nr - 2; i++)
+
+
+        for (int i = 2; i < 15; i++)
+       {
+            int id1 = UnityEngine.Random.Range(2,nr-1);
+            int id2 = UnityEngine.Random.Range(nr+2, 2*nr-1);
+            int id3 = UnityEngine.Random.Range(nr*2+1, 3* nr - 1);
+
+            int tos_1= UnityEngine.Random.Range(1,4);
+            int tos_2 = UnityEngine.Random.Range(1, 4);
+
+            if (tos_1!= tos_2)
+            {
+
+                Element ee1 = circuit.Elements.Single(x => x.id == id1);
+                Element ee2 = circuit.Elements.Single(x => x.id == id3);
+
+                if ( (tos_1 == 1)|| (tos_2 == 1))
+                {
+                    ee1 = circuit.Elements.Single(x => x.id == id1);
+                }
+                else if ((tos_1 == 2) || (tos_2 == 2))
+                {
+                    ee1 = circuit.Elements.Single(x => x.id == id2);
+                }
+                else if ((tos_1 == 3) || (tos_2 == 3))
+                {
+                    ee1 = circuit.Elements.Single(x => x.id == id3);
+                }
+
+                if ((tos_1 == 3) || (tos_2 == 3))
+                {
+                     ee2 = circuit.Elements.Single(x => x.id == id3);
+                }
+                else if ((tos_2 == 2) || (tos_2 == 2))
+                {
+                     ee2 = circuit.Elements.Single(x => x.id == id2);
+                }
+                else if ((tos_1 == 1) || (tos_2 == 1))
+                {
+                     ee2 = circuit.Elements.Single(x => x.id == id1);
+                }
+
+                List<int> elementNeighbours = GetNeighbours(circuit, ee1.id);
+                bool neighbourFlag = true;
+                foreach (int item in elementNeighbours)
+                {
+                    if (item == ee2.id)
+                    {
+                        neighbourFlag = false;
+                    }
+                    if (ee2.lineIndex==ee1.lineIndex)
+                    {
+                        neighbourFlag = false;
+                    }
+                    if (ee2.elementType== ElementType.Input || ee2.elementType == ElementType.Output ||ee1.elementType == ElementType.Input || ee1.elementType == ElementType.Output)
+                    {
+                        neighbourFlag = false;
+                    }
+                }
+
+                if (neighbourFlag)
+                {
+                    circuit = AddEdge(circuit, ee1.id, ee2.id);
+                }
+                
+            }
+
+
+
+            
+        }
+
+
+        int nr_red = 7;
+        for (int i = 2; i < 3 * nr; i++)
         {
-            int id1 = i;
-            circuit = AddEdge(circuit, id1, nr + id1);
+            if (nr_red > 0)
+            {
+                if (UnityEngine.Random.Range(0, 2) > 0)
+                {
+                    //asta ar trebui s a se intample cu o oarecare probabilitate
+                    circuit = ChangeType(circuit, i);
+                    nr_red = nr_red - 1;
+                }
+
+            }
         }
 
+
+        for (int i=0; i <= 2; i++)
+        {
+
+            if (UnityEngine.Random.Range(0, 2) > 0)
+            {
+                int iid1 = UnityEngine.Random.Range(4, 3 * nr - 4);
+                int index = circuit.Elements.IndexOf(circuit.Elements.Single(x => x.id == iid1));
+                circuit.Elements[index].value = 1;
+                if (circuit.Elements[index].elementType == ElementType.ZG) circuit.Elements[index].elementType = ElementType.ZR; else if (circuit.Elements[index].elementType == ElementType.ZR) circuit.Elements[index].elementType = ElementType.ZG;
+            }
+            
+        }
         return circuit;
 
     }
-
-
 
 }

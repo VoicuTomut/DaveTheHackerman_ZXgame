@@ -49,7 +49,7 @@ public class UiElement : MonoBehaviour
                 {
                     UiElement e = hit.collider.gameObject.GetComponent<UiElement>();
                     if (e != null)
-                        e.uiValue.gameObject.SetActive(false);
+                        e.uiValue.SetActive(false);
                 }
             }
         }
@@ -75,9 +75,9 @@ public class UiElement : MonoBehaviour
                 UiElement e = hit.collider.GetComponent<UiElement>();
                 if (e != null)
                 {
-                    if(e.uiValue != null) e.uiValue.gameObject.SetActive(false);
+                    if(e.uiValue != null) e.uiValue.SetActive(false);
 
-                    Circuit c = visualCircuit.circuit.FuseElements(visualCircuit.circuit, id, e.id);
+                    Circuit c = visualCircuit.circuit.Interact(visualCircuit.circuit, id, e.id);
                     if (c != null)
                     {
                         visualCircuit.circuit = c;
@@ -117,12 +117,14 @@ public class UiElement : MonoBehaviour
             Text t = go.GetComponent<Text>();
             if (type == ElementType.ZR) t.color = new Color(textProperties.ZR.r, textProperties.ZR.g, textProperties.ZR.b);
             if (type == ElementType.ZG) t.color = new Color(textProperties.ZG.r, textProperties.ZG.g, textProperties.ZG.b);
-            t.text = value.ToString();
+            t.text = value.ToString("0.00");
             t.transform.position = Camera.main.WorldToScreenPoint(transform.position);
             uiValue = go;
         }
         else go.SetActive(false);
     }
+
+
 
 }
 

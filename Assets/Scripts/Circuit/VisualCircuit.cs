@@ -21,11 +21,10 @@ public class VisualCircuit : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         pool = GetComponent<AdvancedObjectPool>();
         pool.Initialise();
-        InitCircuit(circuit);
 
     }
 
@@ -35,7 +34,6 @@ public class VisualCircuit : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             {
-                Debug.DrawLine(ray.origin, ray.direction * 100, Color.red, 10f);
                 if (Physics.Raycast(ray, out RaycastHit hitInfo, 100))
                 {
                     UiElement u = hitInfo.collider.GetComponent<UiElement>();
@@ -69,7 +67,9 @@ public class VisualCircuit : MonoBehaviour
 
     public void InitCircuit(Circuit circuit)
     {
-        pool.ResetAll();
+        circuit = CircuitConstrain( circuit);
+        if (!pool) pool = GetComponent<AdvancedObjectPool>(); else pool.ResetAll();
+        if (selectedElement) selectedElement.Deselect();
         selectedElement = null;
         int inputCount = circuit.Elements.Where(x => x.elementType == ElementType.Input).ToList().Count;
         List<UiElement> e = DrawUiElements(circuit.Elements);
@@ -80,12 +80,18 @@ public class VisualCircuit : MonoBehaviour
     {
         List<UiElement> e = new List<UiElement>();
         List<Element> hGates = new List<Element>();
+        List<Element> extras = new List<Element>();
         int[] lineCount = new int[5] { 0, 0, 0, 0, 0 };
         float[] widthSteps = GetWidthSteps(elements, (Screen.width));
         float heightStep = GetHeightStep(elements, (Screen.height));
         int spawnedInputs = 1;
         int spawnedOutputs = 1;
-
+        int lastOutputId = 0;
+        List<Element> outputs = elements.Where(x => x.elementType == ElementType.Output).ToList();
+        foreach(Element output in outputs)
+        {
+            if (output.id > lastOutputId) lastOutputId = output.id;
+        }
         foreach (Element element in elements)
         {
             switch (element.elementType)
@@ -99,15 +105,23 @@ public class VisualCircuit : MonoBehaviour
                     }
                 case ElementType.ZG:
                     {
-                        DrawUiElement("ZG", e, element, border + widthSteps[element.lineIndex - 1] * lineCount[element.lineIndex - 1], Screen.height - (heightStep * element.lineIndex - 1));
-                        lineCount[element.lineIndex - 1]++;
-                        break;
+                        if (element.id < lastOutputId)
+                        {
+                            DrawUiElement("ZG", e, element, border + widthSteps[element.lineIndex - 1] * lineCount[element.lineIndex - 1], Screen.height - (heightStep * element.lineIndex - 1));
+                            lineCount[element.lineIndex - 1]++;
+                            break;
+                        }
+                        else extras.Add(element); break;
                     }
                 case ElementType.ZR:
                     {
-                        DrawUiElement("ZR", e, element, border + widthSteps[element.lineIndex - 1] * lineCount[element.lineIndex - 1], Screen.height - (heightStep * element.lineIndex - 1));
-                        lineCount[element.lineIndex - 1]++;
-                        break;
+                        if (element.id < lastOutputId)
+                        {
+                            DrawUiElement("ZR", e, element, border + widthSteps[element.lineIndex - 1] * lineCount[element.lineIndex - 1], Screen.height - (heightStep * element.lineIndex - 1));
+                            lineCount[element.lineIndex - 1]++;
+                            break;
+                        }
+                        else extras.Add(element); break;
                     }
                 case ElementType.Output:
                     {
@@ -122,6 +136,20 @@ public class VisualCircuit : MonoBehaviour
                     }
             }
 
+
+        }
+        foreach (Element el in extras)
+        {
+            List<UiElement> neighbours = GetElementNeighbours(el.id, e);
+            Vector3 position = Vector3.zero;
+            string tag = string.Empty;
+            foreach(UiElement ue in neighbours)
+            {
+               position += ue.transform.position;
+            }
+            if (el.elementType == ElementType.ZG) tag = "ZG";
+            if (el.elementType == ElementType.ZR) tag = "ZR";
+            DrawUiElement(tag, e, el, position/2);
         }
 
         foreach (Element h in hGates)
@@ -129,7 +157,6 @@ public class VisualCircuit : MonoBehaviour
             List<int> neighbours = GetNeighbours(h.id);
             if (neighbours.Count != 2)
             {
-                Debug.Log("Something fucked up");
 
                 return null;
             }
@@ -137,6 +164,9 @@ public class VisualCircuit : MonoBehaviour
             UiElement e2 = e.Single(x => x.id == neighbours[1]);
             DrawHadamart("Square", h, e1, e2, e);
         }
+
+  
+
         return e;
 
     }
@@ -195,6 +225,20 @@ public class VisualCircuit : MonoBehaviour
         elements.Add(ue);
         ue.Init(pool.InstantiateObject("UiText", canvas.transform));
     }
+    private void DrawUiElement(string tag, List<UiElement> elements, Element e, Vector3 position)
+    {
+       
+        GameObject go = pool.InstantiateObject(tag, position, transform);
+        go.transform.localPosition = position;
+        UiElement ue = go.GetComponent<UiElement>();
+        ue.id = e.id;
+        ue.initialPosition = position;
+        ue.type = e.elementType;
+        ue.value = e.value;
+        ue.visualCircuit = this;
+        elements.Add(ue);
+        ue.Init(pool.InstantiateObject("UiText", canvas.transform));
+    }
     private float[] GetWidthSteps(List<Element> elements, float availableWidth)
     {
         float[] steps = new float[5];
@@ -238,7 +282,66 @@ public class VisualCircuit : MonoBehaviour
         return neighbours;
     }
 
+    private List<UiElement> GetElementNeighbours(int id1, List<UiElement> elements)
+    {
+        List<UiElement> neighbours = new List<UiElement>();
+        List<UiElement> checkedNeighbours = new List<UiElement>();
+        int numberOfElements = circuit.AdjancenceMatrix.GetLength(1); //number of elemens in the initial circuit +1
 
+        for (int i = 1; i < numberOfElements; i++)
+        {
+            if (circuit.AdjancenceMatrix[i, 0] == id1)
+            {
+                for (int j = 1; j < numberOfElements; j++)
+                {
+                    if (circuit.AdjancenceMatrix[i, j] == 1)
+                    {
+                        UiElement e1 =elements.Find(x => x.id == circuit.AdjancenceMatrix[0, j]);
+                        if (e1 != null)
+                        {
+                            neighbours.Add(e1);
+                        }
+                        else
+                        {
+                            List<UiElement>depthNeighbours=GetNextNeighbourExcluding(circuit.AdjancenceMatrix[0, j], id1, elements);
+                            neighbours.AddRange(depthNeighbours);
+                        }
+                    }
+                }
+            }
+        }
+
+        return neighbours;
+    }
+    private List<UiElement> GetNextNeighbourExcluding(int id, int exclusionID, List<UiElement> elements)
+    {
+        List<UiElement> neighbours = new List<UiElement>();
+        int numberOfElements = circuit.AdjancenceMatrix.GetLength(1); //number of elemens in the initial circuit +1
+
+        for (int i = 1; i < numberOfElements; i++)
+        {
+            if (circuit.AdjancenceMatrix[i, 0] == id )
+            {
+                for (int j = 1; j < numberOfElements; j++)
+                {
+                    if ((circuit.AdjancenceMatrix[i, j] == 1) && (circuit.AdjancenceMatrix[i,0] != exclusionID))
+                    {
+                        UiElement e1 = elements.Find(x => x.id == circuit.AdjancenceMatrix[0, j]);
+                        if(e1!= null)
+                        {
+                            neighbours.Add(e1);
+                        }
+                        else
+                        {
+                            neighbours.AddRange(GetNextNeighbourExcluding(circuit.AdjancenceMatrix[0, j], exclusionID, elements));
+                        }
+
+                    }
+                }
+            }
+        }
+        return neighbours;
+    }
 
     private void ChangeType()
     {
@@ -249,6 +352,24 @@ public class VisualCircuit : MonoBehaviour
             InitCircuit(circuit);
             selectedElement = null;
         }
+    }
+    public float NumberConstrain(float number)
+    {
+        int int_part = (int)(number % 2);
+        return number / 2.0f - (int)(number / 2) + int_part;
+
+
+    }
+    public Circuit CircuitConstrain(Circuit circuit)
+    {
+
+        for (int i = 0; i < circuit.Elements.Count; i++)
+        {
+            circuit.Elements[i].value = NumberConstrain(circuit.Elements[i].value);
+
+           
+        }
+        return circuit;
     }
 
 }

@@ -8,7 +8,6 @@ public class ObjectPool : MonoBehaviour
     public List<GameObject> poolObjects = new List<GameObject>();
     public int poolSize;
     public GameObject prefab;
-    private Transform parent;
     // Start is called before the first frame update
 
     void Awake()
@@ -22,7 +21,7 @@ public class ObjectPool : MonoBehaviour
         poolObjects = new List<GameObject>();
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject obj = (GameObject)Instantiate(prefab, parent);
+            GameObject obj = (GameObject)Instantiate(prefab);
             obj.SetActive(false);
             poolObjects.Add(obj);
         }

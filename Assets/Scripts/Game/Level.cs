@@ -5,19 +5,24 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
+    public Wave[] waves;
     [SerializeField]
+    PlayerController player;
+    [SerializeField]
+    CircuitMaster circuitMaster;
+    [SerializeField]
+    public Camera environmentCamera;
+    public Camera circuitCamera;
+    public GameObject playerDeathParticles;
+
     private int waveIndex=0;
     private int maxWave;
     bool isCleared = false;
-    public Wave[] waves;
-
-    PlayerController player;
-
+    bool shooter;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponentInChildren<PlayerController>();
         maxWave = waves.Length;
     }
 
@@ -25,30 +30,31 @@ public class Level : MonoBehaviour
     void Update()
     {
 
-        if(waveIndex<maxWave && maxWave > 1)
-        {
-            CheckCurrentWave();
-        }
-        else 
-        {
-        bool flag = false;
-     
-            foreach(GameObject enemy in waves[maxWave-1].enemies)
-            if(enemy.activeInHierarchy)
+            if (waveIndex < maxWave && maxWave > 1)
             {
-                flag = true;
-                break;
+                CheckCurrentWave();
+            }
+            else
+            {
+                bool flag = false;
+
+                foreach (GameObject enemy in waves[maxWave - 1].enemies)
+                    if (enemy.activeInHierarchy)
+                    {
+                        flag = true;
+                        break;
+                    }
+
+
+                if (!flag && !isCleared)
+                {
+                    player.rigidbody.velocity = Vector3.zero;
+                    player.enabled = false;
+                    GameMaster.instace.OnLevelClear();
+                    isCleared = true;
+                }
             }
         
-
-            if (!flag && !isCleared)
-            {
-                player.rigidbody.velocity = Vector3.zero;
-                player.enabled = false;
-                GameMaster.instace.OnLevelClear();
-                isCleared = true;
-            }
-        }
     }
 
     private void CheckCurrentWave()
@@ -74,5 +80,37 @@ public class Level : MonoBehaviour
             obj.SetActive(true);
         }
        
+    }
+
+    public void KillPlayer()
+    {
+        GameObject go = Instantiate(playerDeathParticles, player.transform.position, Quaternion.identity);
+        DeathEffects de = go.GetComponent<DeathEffects>();
+        de.PlayEffects();
+        player.gameObject.SetActive(false);
+    }
+
+
+
+    public void StartCircuitGame()
+    {
+        Time.timeScale = 0;
+        shooter = false;
+        environmentCamera.gameObject.SetActive(false);
+        circuitCamera.tag = "MainCamera";
+        circuitMaster.gameObject.SetActive(true);
+        circuitMaster.Initialize(2);
+        player.enabled = false;
+    }
+    public void EndCircuitGame(float percentage)
+    {
+        circuitMaster.gameObject.SetActive(false);
+        shooter = true;
+        environmentCamera.tag = "MainCamera";
+        environmentCamera.gameObject.SetActive(true);
+        player.enabled = true;
+        Time.timeScale = 1;
+        player.SafetyBlast(percentage);
+
     }
 }

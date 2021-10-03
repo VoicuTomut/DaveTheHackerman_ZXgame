@@ -118,8 +118,8 @@ public class Projectile : MonoBehaviour
                             }
                         case "Player":
                             {
-                                //EnemyController e = collision.gameObject.GetComponent<EnemyController>();
-                                //e.TakeDamage();
+                                PlayerController p = collision.gameObject.GetComponent<PlayerController>();
+                                p.TakeDamage();
                                 parentPool.DestroyObject(gameObject);
                                 break;
                             }

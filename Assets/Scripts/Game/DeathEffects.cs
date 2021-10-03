@@ -17,7 +17,7 @@ public class DeathEffects : MonoBehaviour
     }
 
 
-    public void PlayDeathEffects()
+    public void PlayEffects()
     {
         GameObject p = Instantiate(particles, transform);
         p.transform.position = transform.position;

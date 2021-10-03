@@ -27,7 +27,7 @@ public class TutorialSelectionManager : MonoBehaviour
 
     public void Init()
     {
-        int index = 0;
+        //int index = 0;
 
         //InitItem(tutorialEntries[0], 0, true);
 
