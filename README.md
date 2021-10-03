@@ -1,6 +1,8 @@
 # DAVE the Hackerman
 (who is actually a dodo)
 
+---If application doesn't start, run as admin---
+
 ## Story 
 A long time ago, before Penguins and Polar Bears ruled the world, Dodos were one of the most advanced civilizations. Legends say they passed even the NISQ era and created an eternal, coherent qubit at room temperature.
 But all this technological advancement was lost together with the life of all the dodos in the cold Ice Age.
@@ -37,3 +39,6 @@ PBI firewall is almost unpenetrable; however, with his quantum computing ability
 If you enjoyed our game, you would appreciate [NieR:Automata]("https://store.steampowered.com/agecheck/app/524220/) and Bob Coecke and Aleks Kissinger book ["Picturing quantum processes"](https://www.amazon.com/Picturing-Quantum-Processes-Diagrammatic-Reasoning/dp/110710422X) and also check https://zxcalculus.com. Finally, we want to thank the creators of the resources mentioned above for inspiration.
 
 Uncompressed video : https://we.tl/t-YG17GbagjM
+
+
+
